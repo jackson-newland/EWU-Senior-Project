@@ -1,7 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/slBackButton"
+        android:src="@drawable/backarrow"
+        android:backgroundTint="@android:color/transparent" />
+    <TextView
+        android:text="Select List"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/slBackButton"
+        android:id="@+id/slSelectListText"
+        android:textColor="#ff000000" />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/slBackButton"
+        android:id="@+id/slBackButtonSpace" />
+
+    <Space
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slBackButton"
+        android:id="@+id/slCurrentListSpace1" />
+
+    <TextView
+        android:text="Current:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slBackButtonSpace"
+        android:layout_toRightOf="@id/slCurrentListSpace1"
+        android:id="@+id/slCurrentListText"
+        android:textColor="#ff26415a" />
+
+    <TextView
+        android:text="Current List"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slBackButtonSpace"
+        android:layout_toRightOf="@id/slCurrentListText"
+        android:id="@+id/slCurrentListInfo" />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/slCurrentListInfo"
+        android:id="@+id/slCurrentListSpace2" />
+
+    <Space
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slCurrentListText"
+        android:id="@+id/slButtonSpace1" />
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slCurrentListSpace2"
+        android:layout_toRightOf="@id/slButtonSpace1"
+        android:id="@+id/slAddButton"
+        android:textColor="#ff000000"
+        app:backgroundTint="@android:color/holo_green_light" />
+
+       <Space
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/slAddButton"
+        android:id="@+id/slButtonSpace2" />
+
+    <Button
+        android:text="Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/slAddButton"
+        android:layout_toRightOf="@id/slButtonSpace2"
+        android:id="@+id/slDeleteButton"
+        app:backgroundTint="@android:color/holo_red_light"
+        android:textColor="#ff000000" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/slAddButton"
+        android:id="@+id/slAddButtonSpace" /> 
+    <TextView
+        android:text="List Name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slAddButtonSpace"
+        android:id="@+id/slListNameText" />
+    <TextView
+        android:text="Start Date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slAddButtonSpace"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/slStartDateText" />
+
+    <TextView
+        android:text="End Date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slAddButtonSpace"
+        android:layout_alignParentRight="true"
+        android:id="@+id/slEndDateText" />
+
+
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/slListNameText"
+        android:id="@+id/slLists"
+        android:background="@android:color/holo_blue_bright" />    
+    
+ 
+</RelativeLayout>
