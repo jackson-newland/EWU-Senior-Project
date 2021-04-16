@@ -35,17 +35,6 @@
         android:layout_marginTop="152.5dp"
         android:layout_marginLeft="50.0dp" 
         />
-    <ListView
-        android:id="@+id/listViewViewCoupon"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="392dp"
-        android:layout_height="330dp"
-        android:background="drawable/SearchViewRounded"
-        android:background="#f8fcfc"
-        android:layout_marginTop="228.5dp"
-        android:layout_marginLeft="0.0dp"
-        android:layout_marginRight="0.0dp" 
-        />
+    
     
 </RelativeLayout>
