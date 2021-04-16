@@ -1,7 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <Button
+        android:id="@+id/deleteButtonDeleteGrocery"
+        android:text="Delete"
+        android:textSize="6pt"
+        android:layout_width="90dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#f6a796"
+        android:textColor="@android:color/black"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@drawable/searchviewrounded"
+        android:layout_marginTop="125.5dp"
+        android:layout_marginLeft="38.0dp"
+        android:layout_marginBottom="0.0dp"
+        android:layout_marginRight="0.0dp" 
+        />
+    <Button
+        android:id="@+id/deleteAllButtonDeleteGrocery"
+        android:text="Delete All"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#f77777"
+        android:layout_marginLeft="223.5dp"
+        android:layout_marginBottom="26.5dp"
+        android:layout_marginTop="125.5dp" 
+        />
+    <TextView
+        android:id="@+id/itemsSelectedLabelDeleteGrocery"
+        android:text="Items Selected"
+        android:textSize="5.5pt"
+        android:textColor="#636262"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="179.5dp"
+        android:layout_marginLeft="40.5dp" 
+        />
+    <TextView
+        android:id="@+id/instructionsDeleteGrocery"
+        android:text="Select the items you want to delete from your list. Selected items will be highlighted in blue."
+        android:textSize="8pt"
+        android:textColor="#001331"
+        android:layout_width="1450dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36.5dp"
+        android:layout_marginLeft="39.5dp"
+        android:layout_marginRight="25.0dp"
+        android:layout_marginBottom="0.0dp" 
+        />
+    <ListView
+        android:id="@+id/listViewDeleteGrocery"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="392dp"
+        android:layout_height="330dp"
+        android:background="@drawable/searchviewrounded"
+        android:layout_marginTop="228.5dp"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp" 
+        />
+    
+    
+</RelativeLayout>

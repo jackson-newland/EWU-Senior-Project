@@ -45,7 +45,7 @@
         android:textColor="#ff26415a" />
 
     <TextView
-        android:text="Current List"
+        android:text="Current List Placeholder"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,13 +65,13 @@
         android:id="@+id/slButtonSpace1" />
     <Button
         android:text="Add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_width="90dp"
         android:layout_below="@id/slCurrentListSpace2"
         android:layout_toRightOf="@id/slButtonSpace1"
         android:id="@+id/slAddButton"
         android:textColor="#ff000000"
-        app:backgroundTint="@android:color/holo_green_light" />
+        app:backgroundTint="#7fd178" />
 
        <Space
         android:layout_width="20dp"
@@ -81,12 +81,12 @@
 
     <Button
         android:text="Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_width="90dp"
         android:layout_alignTop="@id/slAddButton"
         android:layout_toRightOf="@id/slButtonSpace2"
         android:id="@+id/slDeleteButton"
-        app:backgroundTint="@android:color/holo_red_light"
+        app:backgroundTint="#f77777"
         android:textColor="#ff000000" />
 
     <Space

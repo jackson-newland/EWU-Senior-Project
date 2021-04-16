@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <TextView
+        android:id="@+id/savedCouponsLabelViewCoupon"
+        android:text="Your saved coupons from:"
+        android:textSize="8pt"
+        android:textColor="#001331"
+        android:layout_width="400dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="42.0dp"
+        android:layout_marginLeft="32.0dp" 
+        />
+    <TextView
+        android:id="@+id/storeNameViewCoupon"
+        android:text="Store Name Variable Placeholder"
+        android:textSize="7pt"
+        android:textColor="#636262"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="102.5dp"
+        android:layout_marginLeft="50.0dp" 
+        />
+    <TextView
+        android:id="@+id/storeAddressViewCoupon"
+        android:text="Store Address Variable Placeholder"
+        android:textSize="7pt"
+        android:textColor="#636262"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="152.5dp"
+        android:layout_marginLeft="50.0dp" 
+        />
+    <ListView
+        android:id="@+id/listViewDeleteGrocery"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="392dp"
+        android:layout_height="330dp"
+        android:background="@drawable/searchviewrounded"
+        android:layout_marginTop="228.5dp"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp" 
+        />
+    
+</RelativeLayout>
