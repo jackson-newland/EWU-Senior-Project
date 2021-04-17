@@ -1,7 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:gravity="fill">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@android:color/transparent"
+        android:id="@+id/setlBackButton"
+        android:src="@drawable/backarrow"/>
+    <TextView
+        android:text="Set New Time Frame"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"       
+        android:id="@+id/setlSetListScreenText"
+        android:textColor="#ff000000" />
 
-</LinearLayout>
+     <Space
+        android:layout_width="25dp"
+        android:layout_height="10dp"
+        android:layout_below="@id/setlBackButton"
+        android:id="@+id/setlBackButtonSpace1" />
+
+    <TextView
+        android:text="Start Date:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setlBackButtonSpace1"
+        android:layout_toRightOf="@id/setlBackButtonSpace1"
+        android:id="@+id/setlStartDateText" />
+
+     <Space
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/setlStartDateText"
+        android:id="@+id/setlDateTextBoxSpace" />
+
+    <EditText
+        android:inputType="date"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/setlDateTextBoxSpace"
+        android:layout_alignBaseline="@id/setlStartDateText"
+        android:id="@+id/setlStartDateBox" />
+
+     <Space
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_below="@id/setlStartDateText"
+        android:id="@+id/setlStartDateTextSpace" /> 
+
+    <TextView
+        android:text="End Date:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setlStartDateTextSpace"
+        android:layout_toRightOf="@id/setlBackButtonSpace1"
+        android:id="@+id/setlEndDateText" />
+
+    <EditText
+        android:inputType="date"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/setlEndDateText"
+        android:layout_toRightOf="@id/setlDateTextBoxSpace"
+        android:id="@+id/setlEndDateBox" />
+
+     <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_below="@id/setlEndDateBox"
+        android:id="@+id/setlDatePickerSpace" />
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setlDatePickerSpace"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/setlDatePicker"/>
+   
+    
+
+
+</RelativeLayout>
