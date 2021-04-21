@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
+using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
 
@@ -16,6 +16,8 @@ namespace GroceryApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+            FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.AddGroceryScreen);                //Setting view to AddGroceryScreen.xml when add button clicked on menu screen.
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -23,9 +25,6 @@ namespace GroceryApp
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public void OnAddButtonMainClicked(View v)
-        {
-            SetContentView(Resource.Layout.AddGroceryScreen);
-        }
+       
     }
 }
