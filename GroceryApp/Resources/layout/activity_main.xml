@@ -19,7 +19,8 @@
         android:layout_marginTop="153.5dp"
         android:layout_marginLeft="148.0dp"
         android:layout_marginBottom="0.0dp"
-        android:layout_marginRight="0.0dp" 
+        android:layout_marginRight="0.0dp"
+        android:onClick="OnAddButtonMainClicked"
         />
     <Button
         android:id="@+id/couponsButtonMain"
@@ -36,6 +37,7 @@
         android:layout_marginLeft="34.0dp"
         android:layout_marginBottom="0.0dp"
         android:layout_marginRight="0.0dp" 
+        android:onClick="OnCouponButtonClicked"
         />
     <Button
         android:id="@+id/deleteButtonMain"
@@ -52,6 +54,7 @@
         android:layout_marginLeft="263.0dp"
         android:layout_marginBottom="0.0dp"
         android:layout_marginRight="0.0dp" 
+        android:onClick="OnDeleteButtonClicked"
         />
     <Button
         android:id="@+id/setStoreButtonMain"
@@ -68,6 +71,7 @@
         android:layout_marginLeft="263.0dp"
         android:layout_marginBottom="0.0dp"
         android:layout_marginRight="0.0dp" 
+        android:onClick="OnSetStoreButtonClicked"
         />
     <Button
         android:id="@+id/setListButtonMain"
@@ -84,6 +88,7 @@
         android:layout_marginLeft="263.0dp"
         android:layout_marginBottom="0.0dp"
         android:layout_marginRight="0.0dp" 
+        android:onClick="OnSetStoreButtonClicked"
         />
     <TextView
         android:id="@+id/currentStoreLabelMain"
