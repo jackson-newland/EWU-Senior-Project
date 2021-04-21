@@ -18,6 +18,8 @@ namespace GroceryApp
             SetContentView(Resource.Layout.activity_main);
 
             FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.AddGroceryScreen);                //Setting view to AddGroceryScreen.xml when add button clicked on menu screen.
+            //Add events like the line above for the rest of the buttons.
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
