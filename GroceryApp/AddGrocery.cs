@@ -20,7 +20,7 @@ namespace GroceryApp
 
             // Create your application here
 
-            FindViewById<ImageButton>(Resource.Id.addGroceryBackButton).Click += (o, e) => SetContentView(Resource.Layout.activity_main);              //Setting view to activity_main.xml when back arrow button clicked on menu screen.
+            FindViewById<ImageButton>(Resource.Id.addGroceryBackButton).Click += (o, e) => SetContentView(Resource.Layout.activity_main);          //Setting view to activity_main.xml when back arrow button clicked on add grocery screen.
         }
 
     }

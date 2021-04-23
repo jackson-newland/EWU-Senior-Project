@@ -4299,22 +4299,25 @@ namespace GroceryApp
 			public const int useLogo = 2131231023;
 			
 			// aapt resource value: 0x7F080130
-			public const int view_offset_helper = 2131231024;
+			public const int viewCouponBackButton = 2131231024;
 			
 			// aapt resource value: 0x7F080131
-			public const int view_tree_saved_state_registry_owner = 2131231025;
+			public const int view_offset_helper = 2131231025;
 			
 			// aapt resource value: 0x7F080132
-			public const int visible = 2131231026;
+			public const int view_tree_saved_state_registry_owner = 2131231026;
 			
 			// aapt resource value: 0x7F080133
-			public const int visible_removing_fragment_view_tag = 2131231027;
+			public const int visible = 2131231027;
 			
 			// aapt resource value: 0x7F080134
-			public const int withText = 2131231028;
+			public const int visible_removing_fragment_view_tag = 2131231028;
 			
 			// aapt resource value: 0x7F080135
-			public const int wrap_content = 2131231029;
+			public const int withText = 2131231029;
+			
+			// aapt resource value: 0x7F080136
+			public const int wrap_content = 2131231030;
 			
 			static Id()
 			{

@@ -19,6 +19,8 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+
+            FindViewById<ImageButton>(Resource.Id.viewCouponBackButton).Click += (o, e) => SetContentView(Resource.Layout.activity_main);       //Setting view to activity_main.xml when back arrow button clicked on view coupon screen.
         }
     }
 }
