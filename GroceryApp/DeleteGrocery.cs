@@ -19,6 +19,8 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+
+            FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton).Click += (o, e) => SetContentView(Resource.Layout.activity_main);
         }
     }
 }
