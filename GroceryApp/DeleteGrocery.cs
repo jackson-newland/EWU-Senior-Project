@@ -21,6 +21,8 @@ namespace GroceryApp
             // Create your application here
 
             FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton).Click += (o, e) => SetContentView(Resource.Layout.activity_main);    //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
+
+            FindViewById<Button>(Resource.Id.deleteButtonDeleteGrocery).Click += (o, e) => SetContentView(Resource.Layout.activity_main);       //testing if issue with the imgbutton or the other screens.
         }
     }
 }
