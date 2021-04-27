@@ -14,11 +14,24 @@ namespace GroceryApp
     [Activity(Label = "SetStore")]
     public class SetStore : Activity
     {
+        ImageButton backButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.SetStoreScreen);
 
-            // Create your application here
+            backButton = FindViewById<ImageButton>(Resource.Id.ssBackButton);
+            backButton.Click += OpenMain;
+
         }
+
+        public void OpenMain(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(MainActivity));
+
+            StartActivity(intent);
+
+        }
+    
     }
 }
