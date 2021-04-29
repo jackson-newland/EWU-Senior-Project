@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
+using Android.Widget;
 using AndroidX.AppCompat.App;
 using Android.Content;
 using Android.Views;
@@ -12,7 +13,7 @@ using System.Text;
 
 namespace GroceryApp
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "Home Screen", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         Button setListButton, setStoreButton, deleteCouponsButton, selectListButton;
@@ -33,8 +34,8 @@ namespace GroceryApp
             deleteCouponsButton.Click += OpenDeleteCoupon;
 
 
-
            // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
+           
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

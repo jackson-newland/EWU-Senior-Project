@@ -17,8 +17,9 @@ namespace GroceryApp
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.ViewCouponScreen);
 
-            // Create your application here
+            FindViewById<ImageButton>(Resource.Id.viewCouponBackButton).Click += delegate { StartActivity(typeof(MainActivity)); };       //Setting view to activity_main.xml when back arrow button clicked on view coupon screen.
         }
     }
 }

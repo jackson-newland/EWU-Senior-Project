@@ -5,6 +5,15 @@
     android:minWidth="25px"
     android:minHeight="25px"
     android:background="#ffffff">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@android:color/transparent"
+        android:id="@+id/addGroceryBackButton"
+        android:src="@drawable/backarrow"
+        android:contentDescription="description" 
+        />
     <SearchView
         android:id="@+id/searchViewAddGrocery"
         android:minWidth="25px"
