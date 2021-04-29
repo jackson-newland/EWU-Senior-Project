@@ -31,6 +31,8 @@ namespace GroceryApp
 
             deleteAllButton = FindViewById<Button>(Resource.Id.deleteAllButtonDeleteGrocery);
             deleteAllButton.Click += DeleteAll;
+
+            //Code for ListView here!
         }
 
         public void OpenMain(object sender, EventArgs e)

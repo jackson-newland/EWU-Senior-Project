@@ -16,7 +16,7 @@ namespace GroceryApp
     [Activity(Label = "Home Screen", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Button setListButton, setStoreButton, deleteCouponsButton, selectListButton;
+        Button setListButton, setStoreButton, deleteCouponsButton, selectListButton, deleteGroceryButton, addGroceryButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,8 +33,11 @@ namespace GroceryApp
             deleteCouponsButton = FindViewById<Button>(Resource.Id.couponsButtonMain);
             deleteCouponsButton.Click += OpenDeleteCoupon;
 
+            deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
+            deleteGroceryButton.Click += OpenDeleteGrocery;
 
-           // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
+            addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
+            addGroceryButton.Click += OpenAddGrocery;
            
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -64,5 +67,20 @@ namespace GroceryApp
             // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
+
+        public void OpenDeleteGrocery(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(DeleteGrocery));
+            // SetContentView(Resource.Layout.SetListScreen);
+            StartActivity(intent);
+        }
+
+        public void OpenAddGrocery(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(AddGrocery));
+            // SetContentView(Resource.Layout.SetListScreen);
+            StartActivity(intent);
+        }
+
     }
 }
