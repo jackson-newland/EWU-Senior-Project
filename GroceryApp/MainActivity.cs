@@ -23,6 +23,8 @@ namespace GroceryApp
             FindViewById<Button>(Resource.Id.setStoreButtonMain).Click += delegate { StartActivity(typeof(SetStore)); };             //Setting view to SetStoreScreen.xml when set store button clicked on menu.
             FindViewById<Button>(Resource.Id.setListButtonMain).Click += delegate { StartActivity(typeof(SelectList)); };            //Setting view to SelectListScreen.xml when set list button is clicked on menu.
 
+            //Have all responces to button click events or other screen element interactions be in the onCreate method. Other methods really only need to be used for database interactions.
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
