@@ -12,7 +12,8 @@
         android:layout_alignParentTop="true"
         android:id="@+id/slBackButton"
         android:src="@drawable/backarrow"
-        android:backgroundTint="@android:color/transparent" />
+        android:backgroundTint="@android:color/transparent"
+        android:onClick="slBackToHomeScreen" />
     <TextView
         android:text="Select List"
         android:textAppearance="?android:attr/textAppearanceSmall"

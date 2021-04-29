@@ -3,28 +3,39 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using Android.Content;
+using Android.Views;
+using Android.Widget;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace GroceryApp
 {
     [Activity(Label = "Home Screen", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        Button setListButton, setStoreButton, deleteCouponsButton, selectListButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main); 
+            SetContentView(Resource.Layout.activity_main);
 
-            FindViewById<Button>(Resource.Id.addButtonMain).Click += delegate { StartActivity(typeof(AddGrocery)); };                //Setting view to AddGroceryScreen.xml when add button clicked on menu screen.
-            FindViewById<Button>(Resource.Id.couponsButtonMain).Click += delegate { StartActivity(typeof(ViewCoupon)); };            //Setting view to ViewCouponScreen.xml when coupons button clicked on menu screen.
-            FindViewById<Button>(Resource.Id.deleteButtonMain).Click += delegate { StartActivity(typeof(DeleteGrocery)); };         //Setting view to DeleteGroceryScreen.xml when delete button clicked on menu screen.
-            FindViewById<Button>(Resource.Id.setStoreButtonMain).Click += delegate { StartActivity(typeof(SetStore)); };             //Setting view to SetStoreScreen.xml when set store button clicked on menu.
-            FindViewById<Button>(Resource.Id.setListButtonMain).Click += delegate { StartActivity(typeof(SelectList)); };            //Setting view to SelectListScreen.xml when set list button is clicked on menu.
+            setListButton = FindViewById<Button>(Resource.Id.setListButtonMain);
+            setListButton.Click += OpenSelectList;
 
-            //Have all responces to button click events or other screen element interactions be in the onCreate method. Other methods really only need to be used for database interactions.
+            setStoreButton = FindViewById<Button>(Resource.Id.setStoreButtonMain);
+            setStoreButton.Click += OpenSetSore;
 
+            deleteCouponsButton = FindViewById<Button>(Resource.Id.couponsButtonMain);
+            deleteCouponsButton.Click += OpenDeleteCoupon;
+
+
+           // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
+           
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -32,6 +43,26 @@ namespace GroceryApp
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-       
+
+        public void OpenSelectList(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(SelectList));
+           // SetContentView(Resource.Layout.SetListScreen);
+            StartActivity(intent);
+        }
+
+        public void OpenSetSore(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(SetStore));
+            // SetContentView(Resource.Layout.SetListScreen);
+            StartActivity(intent);
+        }
+
+        public void OpenDeleteCoupon(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(DeleteCoupon));
+            // SetContentView(Resource.Layout.SetListScreen);
+            StartActivity(intent);
+        }
     }
 }
