@@ -68,7 +68,7 @@ namespace GroceryApp
 
         public void OpenDeleteCoupon(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(DeleteCoupon));
+            Intent intent = new Intent(this, typeof(DeleteCoupon));            
             // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
