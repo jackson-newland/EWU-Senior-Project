@@ -31,18 +31,12 @@ namespace GroceryApp
             deleteAllButton = FindViewById<Button>(Resource.Id.dcDeleteAllButton);
             deleteAllButton.Click += DeleteAllCoupons;
 
-            // FindViewById<Button>(Resource.Id.slAddButton).Click += (o, e) => 
-
-
-
         }
 
         public void OpenMain(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(MainActivity));
-
             StartActivity(intent);
-
         }
 
         public void DeleteSelectedCoupon(object sender, EventArgs e)
