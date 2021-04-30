@@ -18,6 +18,9 @@ namespace GroceryApp
         ImageButton backButton;
         Button deleteButton, deleteAllButton;
 
+        List<string> Items;
+        ListView ListViewDelGro;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,6 +36,18 @@ namespace GroceryApp
             deleteAllButton.Click += DeleteAll;
 
             //Code for ListView here!
+
+            ListViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
+
+            Items.Add("Item 1");
+            Items.Add("Item 2");
+            Items.Add("Item 3");
+
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
+
+            ListViewDelGro.Adapter = adapter;
+
+            //End code for ListView!
         }
 
         public void OpenMain(object sender, EventArgs e)
