@@ -39,6 +39,7 @@ namespace GroceryApp
 
             ListViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
 
+            Items = new List<string>();
             Items.Add("Item 1");
             Items.Add("Item 2");
             Items.Add("Item 3");
