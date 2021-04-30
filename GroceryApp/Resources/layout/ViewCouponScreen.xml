@@ -44,7 +44,7 @@
         android:layout_marginLeft="50.0dp" 
         />
     <ListView
-        android:id="@+id/listViewDeleteGrocery"
+        android:id="@+id/listViewCoupons"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="392dp"
