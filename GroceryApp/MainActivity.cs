@@ -17,12 +17,16 @@ namespace GroceryApp
     public class MainActivity : AppCompatActivity
     {
         Button setListButton, setStoreButton, deleteCouponsButton, selectListButton, deleteGroceryButton, addGroceryButton;
+        List<string> Items;
+        ListView ListViewMain;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+            DisplayList();                                                                              //Calls ListView displaying method.
 
             setListButton = FindViewById<Button>(Resource.Id.setListButtonMain);
             setListButton.Click += OpenSelectList;
@@ -82,5 +86,20 @@ namespace GroceryApp
             StartActivity(intent);
         }
 
+        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        {
+            ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
+
+            Items = new List<string>();
+            Items.Add("Item 1");
+            Items.Add("Item 2");
+            Items.Add("Item 3");
+            Items.Add("Item 4");
+            Items.Add("Item 5");
+            Items.Add("Item 6");
+
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
+            ListViewMain.Adapter = adapter;
+        }
     }
 }
