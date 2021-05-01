@@ -91,9 +91,9 @@ namespace GroceryApp
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
-            Items = new List<string>();
-            Items.Add("Item 1");
-            Items.Add("Item 2");
+            Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
+            Items.Add("Item 1");                                                //in the same way, except perhaps using a for loop or something to add all the items in a list to be displayed. May need to have
+            Items.Add("Item 2");                                                //scrolling funtionality, but I will figure that out later.
             Items.Add("Item 3");
             Items.Add("Item 4");
             Items.Add("Item 5");
