@@ -38,8 +38,6 @@ namespace GroceryApp
             deleteButton = FindViewById<Button>(Resource.Id.slDeleteButton);
             deleteButton.Click += DeleteList;
 
-
-
         }
 
         public void OpenMain(object sender, EventArgs e)
@@ -47,7 +45,6 @@ namespace GroceryApp
             Intent intent = new Intent(this, typeof(MainActivity));
 
             StartActivity(intent);
-
         }
 
         public void AddList(object sender, EventArgs e)
@@ -55,15 +52,11 @@ namespace GroceryApp
             Intent intent = new Intent(this, typeof(SetList));
 
             StartActivity(intent);
-
         }
 
         public void DeleteList(object sender, EventArgs e)
         {
-          //  Intent intent = new Intent(this, typeof(SetList));
-
-         //   StartActivity(intent);
-
+          //SQL Commands on current database to remove the selected list.
         }
 
         public void DisplayList()

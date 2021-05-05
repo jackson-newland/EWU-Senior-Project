@@ -23,7 +23,7 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteCouponScreen);
             
-            //DisplayList();
+            DisplayList();
 
             backButton = FindViewById<ImageButton>(Resource.Id.dcBackButton);
             backButton.Click += OpenMain;
@@ -44,18 +44,19 @@ namespace GroceryApp
 
         public void DeleteSelectedCoupon(object sender, EventArgs e)
         {
-      //      Intent intent = new Intent(this, typeof(MainActivity));
+            //Intent intent = new Intent(this, typeof(MainActivity));
+            //StartActivity(intent);
 
-       //     StartActivity(intent);
+            //SQL command to remove coupon with corresponding ID.
 
         }
 
         public void DeleteAllCoupons(object sender, EventArgs e)
         {
-       //     Intent intent = new Intent(this, typeof(MainActivity));
+            //Intent intent = new Intent(this, typeof(MainActivity));
+            //StartActivity(intent);
 
-       //     StartActivity(intent);
-
+            //SQL command to remove all coupons saved. Won't the web scraper pick them up again later though?
         }
 
         public void DisplayList()

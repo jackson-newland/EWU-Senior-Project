@@ -55,35 +55,30 @@ namespace GroceryApp
         public void OpenSelectList(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(SelectList));
-           // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
 
         public void OpenSetSore(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(SetStore));
-            // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
 
         public void OpenDeleteCoupon(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(DeleteCoupon));            
-            // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
 
         public void OpenDeleteGrocery(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(DeleteGrocery));
-            // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
 
         public void OpenAddGrocery(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(AddGrocery));
-            // SetContentView(Resource.Layout.SetListScreen);
             StartActivity(intent);
         }
 
