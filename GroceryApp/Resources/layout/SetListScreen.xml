@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:gravity="fill">
+    android:gravity="fill"
+    android:background="#ffffff">
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        
+        android:layout_alignParentTop="true"  
         android:id="@+id/setlBackButton"
         android:src="@drawable/backarrow"/>
+
     <TextView
         android:text="Set New Time Frame"
         android:textAppearance="?android:attr/textAppearanceSmall"

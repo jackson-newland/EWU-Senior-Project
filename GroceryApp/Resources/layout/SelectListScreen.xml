@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -128,7 +129,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/slListNameText"
         android:id="@+id/slLists"
-        android:background="@android:color/holo_blue_bright" />    
+        android:background="#f8fcfc" />    
     
  
 </RelativeLayout>
