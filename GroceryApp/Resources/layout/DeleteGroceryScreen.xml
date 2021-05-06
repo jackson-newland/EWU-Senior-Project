@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@android:color/transparent"
+        android:id="@+id/deleteGroceryBackButton"
+        android:src="@drawable/backarrow"
+        android:contentDescription="description" 
+        />
     <Button
         android:id="@+id/deleteButtonDeleteGrocery"
         android:text="Delete"

@@ -47,9 +47,8 @@ namespace GroceryApp
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
 
-            addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
-            addGroceryButton.Click += OpenAddGrocery;
-
+           // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
+           
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
