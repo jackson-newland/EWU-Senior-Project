@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -24,7 +24,7 @@ namespace GroceryApp
             DisplayList();
             backButton = FindViewById<ImageButton>(Resource.Id.viewCouponBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on view coupon screen.
             backButton.Click += OpenMain;
-            
+
         }
 
         public void OpenMain(object sender, EventArgs e)
