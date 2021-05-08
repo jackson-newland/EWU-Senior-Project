@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -28,9 +28,9 @@ namespace GroceryApp
 
         public void OpenSelectList(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(SelectList));           
-            StartActivity(intent);         
+            Intent intent = new Intent(this, typeof(SelectList));
+            StartActivity(intent);
         }
-       
+
     }
 }
