@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -34,7 +34,7 @@ namespace GroceryApp
             Intent intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
         }
-    
+
         public void DisplayList()
         {
             listSetStore = FindViewById<ListView>(Resource.Id.ssStoreInfoList);     //Displays list of stored stores (selects which database is used basically.)
