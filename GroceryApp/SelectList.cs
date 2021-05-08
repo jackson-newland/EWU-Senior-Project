@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -56,7 +56,7 @@ namespace GroceryApp
 
         public void DeleteList(object sender, EventArgs e)
         {
-          //SQL Commands on current database to remove the selected list.
+            //SQL Commands on current database to remove the selected list.
         }
 
         public void DisplayList()
