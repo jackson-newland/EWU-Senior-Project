@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -22,7 +22,7 @@ namespace GroceryApp
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteCouponScreen);
-            
+
             DisplayList();
 
             backButton = FindViewById<ImageButton>(Resource.Id.dcBackButton);
@@ -61,7 +61,7 @@ namespace GroceryApp
 
         public void DisplayList()
         {
-            ListViewDelCoup = FindViewById<ListView>(Resource.Id.dcCouponListSpace);
+            ListViewDelCoup = FindViewById<ListView>(Resource.Id.dcCouponList);
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
             Items.Add("Item 1");                                                //in the same way, except perhaps using a for loop or something to add all the items in a list to be displayed. May need to have
