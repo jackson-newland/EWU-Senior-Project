@@ -1,87 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:background="#ffffff">
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:backgroundTint="@android:color/transparent"
         android:id="@+id/ssBackButton"
-        android:src="@drawable/backarrow"/>
-    <TextView
-        android:text="Set Current Store"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/ssSetStoreText"
-        android:textColor="#ff000000" />
-
-    <Space
-        android:layout_width="25dp"
-        android:layout_height="10dp"
-        android:layout_below="@id/ssBackButton"
-        android:id="@+id/ssBackButtonSpace" />
-
+        android:src="@drawable/backarrow"
+        android:contentDescription="description" 
+        />
     <TextView
         android:text="Your current store:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ssBackButtonSpace"
-        android:layout_toRightOf="@id/ssBackButtonSpace"
         android:id="@+id/ssCurrentStoreText"
-        android:textColor="@android:color/black" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="10dp"
-        android:layout_below="@id/ssCurrentStoreText"
-        android:id="@+id/ssCurrentStoreTextSpace" />
-
+        android:textColor="@android:color/black"
+        android:layout_marginTop="70.5dp"
+        android:layout_marginLeft="25.0dp" 
+        />
     <TextView
         android:text="Store name and address..."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ssCurrentStoreTextSpace"
-        android:layout_toRightOf="@id/ssBackButtonSpace"
         android:id="@+id/ssCurrentStoreInfoText"
         android:textStyle="bold"
-        android:textColor="@color/design_default_color_primary_dark" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_below="@id/ssCurrentStoreInfoText"
-        android:id="@+id/ssCurrentStoreInfoTextSpace" />
-
+        android:textColor="@color/design_default_color_primary_dark"
+        android:layout_marginTop="103.5dp"
+        android:layout_marginLeft="24.0dp" 
+        />
     <TextView
-        android:text="Select which store you would like to shop from."
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ssCurrentStoreInfoTextSpace"
         android:id="@+id/ssStoreSelectText"
-        android:textColor="@android:color/black" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_below="@id/ssStoreSelectText"
-        android:id="@+id/ssStoreInfoListSpace" />
-
-    <ListView
+        android:text="Select Store to Shop From"
+        android:textColor="#001331"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="210.5dp"
+        android:layout_marginLeft="17.5dp" 
+        />
+     <ListView
+        android:id="@+id/ssStoreInfoList"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ssStoreInfoListSpace"
-        android:id="@+id/ssStoreInfoList"
-        android:background="#f8fcfc" />   
-
+        android:layout_width="392dp"
+        android:layout_height="330dp"
+        android:background="#f8fcfc"
+        android:layout_marginTop="228.5dp"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp" 
+        />
+    
+     
 </RelativeLayout>

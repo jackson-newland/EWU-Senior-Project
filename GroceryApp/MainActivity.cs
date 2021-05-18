@@ -5,7 +5,6 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using Android.Content;
 using Android.Views;
-using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,17 +96,9 @@ namespace GroceryApp
             IEnumerable<Grocery> list = _db.GetGroceries("testList");           // This method calls the current list and converts everything into a Ienumberable list
             foreach (Grocery g in list)                                          // Goes through the list and adds each grocery name to the list
             {
-                Items.Add(g.Name);
-
+                Items.Add(g.Name + "            " + g.Price);                    //Will instead add a string withg the g.Name and g.Price
+                                                                                //Already has scrolling functionality.
             }
-
-            //Items.Add("Item 1");                                                //in the same way, except perhaps using a for loop or something to add all the items in a list to be displayed. May need to have
-            //Items.Add("Item 2");                                                //scrolling funtionality, but I will figure that out later.
-            //Items.Add("Item 3");
-            //Items.Add("Item 4");
-            //Items.Add("Item 5");
-            //Items.Add("Item 6");
-
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewMain.Adapter = adapter;
         }

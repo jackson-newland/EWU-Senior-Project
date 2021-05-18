@@ -23,7 +23,7 @@
         />
     <Button
         android:id="@+id/couponsButtonMain"
-        android:text="Coupons"
+        android:text="Coupon"
         android:textSize="5.73pt"
         android:layout_width="90dp"
         android:layout_height="55dp"

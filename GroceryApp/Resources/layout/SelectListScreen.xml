@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,15 +16,6 @@
         android:src="@drawable/backarrow"
         android:backgroundTint="@android:color/transparent"
         android:onClick="slBackToHomeScreen" />
-    <TextView
-        android:text="Select List"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@id/slBackButton"
-        android:id="@+id/slSelectListText"
-        android:textColor="#ff000000" />
     <Space
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -44,7 +36,8 @@
         android:layout_below="@id/slBackButtonSpace"
         android:layout_toRightOf="@id/slCurrentListSpace1"
         android:id="@+id/slCurrentListText"
-        android:textColor="#ff26415a" />
+        android:textColor="#ff26415a"
+        android:layout_marginLeft="12.0dp" />
 
     <TextView
         android:text="Current List Placeholder"
@@ -53,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/slBackButtonSpace"
         android:layout_toRightOf="@id/slCurrentListText"
-        android:id="@+id/slCurrentListInfo" />
+        android:id="@+id/slCurrentListInfo"
+        android:layout_marginLeft="18.0dp" />
     <Space
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -75,7 +69,7 @@
         android:textColor="#ff000000"
         app:backgroundTint="#7fd178" />
 
-       <Space
+    <Space
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/slAddButton"
@@ -88,14 +82,14 @@
         android:layout_alignTop="@id/slAddButton"
         android:layout_toRightOf="@id/slButtonSpace2"
         android:id="@+id/slDeleteButton"
-        app:backgroundTint="#f77777"
+        app:backgroundTint="#f6a796"
         android:textColor="#ff000000" />
 
     <Space
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@id/slAddButton"
-        android:id="@+id/slAddButtonSpace" /> 
+        android:id="@+id/slAddButtonSpace" />
     <TextView
         android:text="List Name"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -129,7 +123,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/slListNameText"
         android:id="@+id/slLists"
-        android:background="#f8fcfc" />    
-    
- 
+        android:background="#f8fcfc" />
+
+
 </RelativeLayout>

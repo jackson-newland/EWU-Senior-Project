@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,21 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:backgroundTint="@android:color/transparent"      
+        android:backgroundTint="@android:color/transparent"
         android:id="@+id/dcBackButton"
         android:src="@drawable/backarrow"/>
-    <TextView
-        android:text="Delete Coupons"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/dcDeleteCouponsText"
-        android:textColor="#ff000000" />
 
-     <Space
+    <Space
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:layout_below="@id/dcBackButton"
         android:id="@+id/dcBackButtonSpace" />
     <TextView
@@ -45,7 +38,7 @@
         android:id="@+id/dcInfoTextSpace1" />
 
     <Space
-        android:layout_width="25dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/dcInfoText"
         android:id="@+id/dcInfoTextSpace2" />
@@ -61,7 +54,7 @@
         app:backgroundTint="#f6a796"/>
 
     <Space
-        android:layout_width="90dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/dcInfoText"
         android:layout_toRightOf="@id/dcDeleteButton"
@@ -76,14 +69,16 @@
         android:id="@+id/dcDeleteAllButton"
         android:textColor="#ffff"
         app:backgroundTint="#f77777"/>
+
     <TextView
-        android:text="Items selcted:"
+        android:text="No. Selected:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dcDeleteButton"
         android:layout_toRightOf="@id/dcInfoTextSpace2"
         android:id="@+id/dcItemsSelectedText" />
+
     <TextView
         android:text="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -95,7 +90,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:layout_below="@id/dcItemsSelectedText"
         android:id="@+id/dcCouponListSpace" />
 
@@ -107,8 +102,8 @@
         android:layout_below="@id/dcCouponListSpace"
         android:id="@+id/dcCouponList"
         android:background="#f8fcfc" />
-    
-    
+
+
 
 
 </RelativeLayout>
