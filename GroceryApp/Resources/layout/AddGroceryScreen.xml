@@ -57,7 +57,7 @@
         android:id="@+id/listViewAddGrocery"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="330dp"
         android:background="#f8fcfc"
         android:layout_marginTop="228.5dp"
