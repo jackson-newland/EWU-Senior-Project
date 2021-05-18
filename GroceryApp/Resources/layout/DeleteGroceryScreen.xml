@@ -36,6 +36,7 @@
         android:layout_width="130dp"
         android:layout_height="55dp"
         android:backgroundTint="#f77777"
+        android:textColor="#ffffff"
         android:background="@drawable/searchviewrounded"
         android:layout_marginLeft="223.5dp"
         android:layout_marginBottom="26.5dp"
