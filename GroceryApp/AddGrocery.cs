@@ -33,7 +33,7 @@ namespace GroceryApp
             StartActivity(intent);
         }
 
-        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        public void DisplayList()                                               
         {
             ListViewAddGro = FindViewById<ListView>(Resource.Id.listViewAddGrocery);
 

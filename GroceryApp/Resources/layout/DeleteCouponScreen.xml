@@ -1,109 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:background="#ffffff">
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:backgroundTint="@android:color/transparent"
         android:id="@+id/dcBackButton"
-        android:src="@drawable/backarrow"/>
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="5dp"
-        android:layout_below="@id/dcBackButton"
-        android:id="@+id/dcBackButtonSpace" />
+        android:src="@drawable/backarrow"
+        android:contentDescription="description" 
+        />
     <TextView
-        android:text="Select the coupons to delete"
+        android:text="Select the Coupons to Delete"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dcBackButtonSpace"
-        android:layout_centerHorizontal="true"
         android:id="@+id/dcInfoText"
-        android:textColor="#ff26415a" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="10dp"
-        android:layout_below="@id/dcInfoText"
-        android:id="@+id/dcInfoTextSpace1" />
-
-    <Space
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dcInfoText"
-        android:id="@+id/dcInfoTextSpace2" />
-
+        android:textColor="#ff26415a"
+        android:layout_marginTop="55.0dp"
+        android:layout_marginLeft="37.5dp" 
+        />
     <Button
         android:text="Delete"
         android:layout_height="55dp"
         android:layout_width="90dp"
-        android:layout_below="@id/dcInfoTextSpace1"
-        android:layout_toRightOf="@id/dcInfoTextSpace2"
         android:id="@+id/dcDeleteButton"
         android:textColor="#ff000000"
-        app:backgroundTint="#f6a796"/>
-
-    <Space
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dcInfoText"
-        android:layout_toRightOf="@id/dcDeleteButton"
-        android:id="@+id/dcDeleteButtonSpace" />
-
+        android:backgroundTint="#f6a796"
+        android:layout_marginTop="92.5dp"
+        android:layout_marginLeft="37.5dp" 
+        />
     <Button
         android:text="Delete All"
         android:layout_height="55dp"
         android:layout_width="130dp"
-        android:layout_alignTop="@id/dcDeleteButton"
-        android:layout_toRightOf="@id/dcDeleteButtonSpace"
         android:id="@+id/dcDeleteAllButton"
         android:textColor="#ffff"
-        app:backgroundTint="#f77777"/>
-
+        android:backgroundTint="#f77777"
+        android:layout_marginLeft="191.5dp"
+        android:layout_marginTop="92.5dp" 
+        />
     <TextView
         android:text="No. Selected:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dcDeleteButton"
-        android:layout_toRightOf="@id/dcInfoTextSpace2"
-        android:id="@+id/dcItemsSelectedText" />
-
+        android:id="@+id/dcItemsSelectedText"
+        android:layout_marginTop="148.0dp"
+        android:layout_marginLeft="37.5dp" 
+        />
     <TextView
-        android:text="1"
+        android:text="0"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/dcItemsSelectedText"
-        android:layout_alignTop="@id/dcItemsSelectedText"
-        android:id="@+id/dcItemsSelectedNumber" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_below="@id/dcItemsSelectedText"
-        android:id="@+id/dcCouponListSpace" />
-
+        android:id="@+id/dcItemsSelectedNumber"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="148.5dp" 
+        />
     <ListView
+        android:id="@+id/dcCouponList"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/dcCouponListSpace"
-        android:id="@+id/dcCouponList"
-        android:background="#f8fcfc" />
-
-
-
-
+        android:layout_width="392dp"
+        android:layout_height="360dp"
+        android:background="#f8fcfc"
+        android:layout_marginTop="196.0dp"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp" 
+        />
+     
 </RelativeLayout>

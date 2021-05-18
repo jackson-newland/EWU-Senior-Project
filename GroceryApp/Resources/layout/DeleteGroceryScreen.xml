@@ -57,7 +57,7 @@
         android:textColor="#001331"
         android:layout_width="1450dp"
         android:layout_height="80dp"
-        android:layout_marginTop="36.5dp"
+        android:layout_marginTop="40.5dp"
         android:layout_marginLeft="39.5dp"
         android:layout_marginRight="25.0dp"
         android:layout_marginBottom="0.0dp" 

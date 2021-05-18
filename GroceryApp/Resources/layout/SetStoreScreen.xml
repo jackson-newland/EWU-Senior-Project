@@ -43,17 +43,17 @@
         android:textColor="#001331"
         android:layout_width="170dp"
         android:layout_height="20dp"
-        android:layout_marginTop="210.5dp"
+        android:layout_marginTop="190.5dp"
         android:layout_marginLeft="17.5dp" 
         />
-     <ListView
+    <ListView
         android:id="@+id/ssStoreInfoList"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="392dp"
-        android:layout_height="330dp"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
         android:background="#f8fcfc"
-        android:layout_marginTop="228.5dp"
+        android:layout_marginTop="210.0dp"
         android:layout_marginLeft="0.0dp"
         android:layout_marginRight="0.0dp" 
         />

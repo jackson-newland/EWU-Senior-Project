@@ -46,6 +46,9 @@ namespace GroceryApp
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
 
+            addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
+            addGroceryButton.Click += OpenAddGrocery;
+
            // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
            
         }
@@ -87,7 +90,7 @@ namespace GroceryApp
             StartActivity(intent);
         }
 
-        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        public void DisplayList()                                               
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
@@ -96,7 +99,7 @@ namespace GroceryApp
             IEnumerable<Grocery> list = _db.GetGroceries("testList");           // This method calls the current list and converts everything into a Ienumberable list
             foreach (Grocery g in list)                                          // Goes through the list and adds each grocery name to the list
             {
-                Items.Add(g.Name + "            " + g.Price);                    //Will instead add a string withg the g.Name and g.Price
+                Items.Add(g.Name + "            " + g.Price);                    //Will instead add a string with the g.Name and g.Price
                                                                                 //Already has scrolling functionality.
             }
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);

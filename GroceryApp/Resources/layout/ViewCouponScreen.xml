@@ -20,7 +20,7 @@
         android:textColor="#001331"
         android:layout_width="400dp"
         android:layout_height="35dp"
-        android:layout_marginTop="42.0dp"
+        android:layout_marginTop="52.0dp"
         android:layout_marginLeft="32.0dp" 
         />
     <TextView
