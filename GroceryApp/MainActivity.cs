@@ -99,7 +99,7 @@ namespace GroceryApp
             IEnumerable<Grocery> list = _db.GetGroceries("testList");           //This method calls the current list and converts everything into a Ienumberable list
             foreach (Grocery g in list)                                         //Goes through the list and adds each grocery name to the list
             {                                                                   //Already has scrolling functionality.
-                Items.Add(g.Name + "                                                                                  " + g.Price);
+                Items.Add(g.Name + "                                                                          " + g.Price);
                                                                                 //Will instead add a string with the g.Name and g.Price                     
             }
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
