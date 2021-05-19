@@ -92,15 +92,15 @@ namespace GroceryApp
 
         public void DisplayList()                                               
         {
-            ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
-
-            Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
+            ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);    //This code can be used in the other listviews. Initialize the _db database just like it is at the top of this class.
+                                                                                //We need to figure out how to 
+            Items = new List<string>();                                         
            
-            IEnumerable<Grocery> list = _db.GetGroceries("testList");           // This method calls the current list and converts everything into a Ienumberable list
-            foreach (Grocery g in list)                                          // Goes through the list and adds each grocery name to the list
-            {
-                Items.Add(g.Name + "            " + g.Price);                    //Will instead add a string with the g.Name and g.Price
-                                                                                //Already has scrolling functionality.
+            IEnumerable<Grocery> list = _db.GetGroceries("testList");           //This method calls the current list and converts everything into a Ienumberable list
+            foreach (Grocery g in list)                                         //Goes through the list and adds each grocery name to the list
+            {                                                                   //Already has scrolling functionality.
+                Items.Add(g.Name + "                                                                                  " + g.Price);
+                                                                                //Will instead add a string with the g.Name and g.Price                     
             }
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewMain.Adapter = adapter;
