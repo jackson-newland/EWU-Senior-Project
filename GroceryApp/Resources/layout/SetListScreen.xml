@@ -1,3 +1,4 @@
+  
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -8,6 +9,7 @@
     android:minHeight="25px"
     android:gravity="fill"
     android:background="#ffffff">
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/setlDateTextBoxSpace"
         android:layout_alignBaseline="@id/setlStartDateText"
-        android:id="@+id/setlStartDateBox" />
+        android:id="@+id/setlStartDateBox"
+        android:focusable="auto" />
 
      <Space
         android:layout_width="wrap_content"
@@ -78,16 +81,62 @@
 
      <Space
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="15dp"
         android:layout_below="@id/setlEndDateBox"
+        android:id="@+id/setlEndDateTextSpace" />
+
+    <TextView
+        android:text="Budget:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setlEndDateTextSpace"
+        android:layout_toRightOf="@id/setlBackButtonSpace1"
+        android:id="@+id/setlBudgetText" />
+
+    <EditText
+        android:inputType="numberDecimal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/setlBudgetText"
+        android:layout_toRightOf="@id/setlDateTextBoxSpace"
+        android:id="@+id/setlBudgetBox" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_below="@id/setlBudgetBox"
+        android:id="@+id/setlSetButtonSpace" />
+
+    <Button
+        android:text="Set"
+        android:textSize="6pt"
+        android:layout_width="90dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#9bb8f0"
+        android:textColor="@android:color/black"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@drawable/searchviewrounded"
+        android:layout_below="@id/setlSetButtonSpace"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/setlSetButton"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_below="@id/setlSetButton"
         android:id="@+id/setlDatePickerSpace" />
+
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/setlDatePickerSpace"
         android:layout_centerHorizontal="true"
         android:id="@+id/setlDatePicker"
-        android:visibility="invisible" />
+         />
+    
+    
    
     
 

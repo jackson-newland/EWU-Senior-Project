@@ -19,11 +19,14 @@ namespace GroceryApp
         Button deleteButton, deleteAllButton;
         List<string> Items;
         ListView ListViewDelGro;
+        GroceryAppDB _db;
+        String currentList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
-
+            _db = new GroceryAppDB();
+            currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
             DisplayList();                                                                               //Calls ListView displaying method.
 
             backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
@@ -51,19 +54,21 @@ namespace GroceryApp
         public void DeleteAll(object sender, EventArgs e)
         {
             //Delete All Groceries
+            _db.DeleteAllGrocery(currentList);
         }
 
-        public void DisplayList()
+        public void DisplayList()                                   //Originally from MainActivity.cs. Will revert back if it doesn't work for some reason.
         {
             ListViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
 
-            Items = new List<string>();
-            Items.Add("Item 1");
-            Items.Add("Item 2");
-            Items.Add("Item 3");
-            Items.Add("Item 4");
-            Items.Add("Item 5");
-            Items.Add("Item 6");
+            Items = new List<string>();                                           //The code that populated the string list will change to concat strings using data from the database. Then it will be added
+
+            IEnumerable<Grocery> glist = _db.GetGroceries("List1");               //This method calls the current list and converts everything into a Ienumberable list
+            foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
+            {
+                Items.Add(g.ToString());
+
+            }
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewDelGro.Adapter = adapter;
