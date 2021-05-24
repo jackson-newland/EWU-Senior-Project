@@ -55,6 +55,7 @@ namespace GroceryApp
         {
             //Delete All Groceries. Changed it to use Jackson's helper method in the GroceryAppDB class.
             _db.DeleteAllGrocery(currentList);
+            DisplayList();
         }
 
         public void DisplayList()                                   //Originally from MainActivity.cs. Will revert back if it doesn't work for some reason.
