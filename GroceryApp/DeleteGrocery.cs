@@ -53,7 +53,7 @@ namespace GroceryApp
 
         public void DeleteAll(object sender, EventArgs e)
         {
-            //Delete All Groceries
+            //Delete All Groceries. Changed it to use Jackson's helper method in the GroceryAppDB class.
             _db.DeleteAllGrocery(currentList);
         }
 
