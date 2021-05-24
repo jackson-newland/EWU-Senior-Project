@@ -9,18 +9,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace GroceryApp
 {
 
-    //  [Table("Grocery")]
+    [Table("Groceries")]
     class Grocery
     {
-        //  [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public string Coupon { get; set; }
+        public string Store { get; set; }
+
+        [ForeignKey(typeof(GroceryLists))] // With sql.net extension, this works but I couldn't get the tables to join. Basically does nothing currently
+        public string ListName { get; set; }
 
         public Grocery()
         {
@@ -28,7 +33,7 @@ namespace GroceryApp
 
         public override string ToString()
         {
-            return Name.ToString() + "    " +Price.ToString() + CreatedOn.ToString();
+            return Name.PadRight(10, ' ') + "$" + Price + Coupon.PadLeft(10, ' ') + Store.PadLeft(10, ' ');
         }
     }
 }

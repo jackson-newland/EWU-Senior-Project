@@ -29,9 +29,22 @@ namespace GroceryApp
 
             _db = new GroceryAppDB(); // Creates the connection to the database
 
-                                                                                                        //This is a test for creating and adding items to the list
-            _db.CreateTable("testList");                                                                // creates a list called testList
-            _db.AddGrocery("testList", "Banana", 3.50);                                                 // adds a banana for $3.50 to the current list 
+            // Used for testing lists and groceries
+            _db.AddGroceryList("List1", 150);
+            _db.AddGroceryList("List2", 120);
+            _db.AddGrocery("List1", "Milk", 5, "Coupon", "Safeway");
+            _db.AddGrocery("List1", "Apple", 3, "Coupon", "Safeway");
+            _db.AddGrocery("List1", "Orange", 2, "Coupon", "Safeway");
+            _db.AddGrocery("List2", "Milk", 5, "Coupon", "Safeway");
+            _db.AddGrocery("List2", "Eggs", 4, "Coupon", "Safeway");
+
+
+            // old
+            //This is a test for creating and adding items to the list
+            // _db.CreateTable("test");                                                                // creates a list called testList
+            // _db.AddGrocery("test", "Banana", 3.50, "coupon", "safeway");                                                 // adds a banana for $3.50 to the current list 
+            //  _db.AddGrocery("test", "Orange", 2.50, "coupon", "safeway");
+            //  _db.AddGrocery("test", "Apple", 3.25, "coupon", "safeway");
 
             DisplayList();                                                                              //Calls ListView displaying method.
 
@@ -47,8 +60,8 @@ namespace GroceryApp
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
 
-           // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
-           
+            // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -93,22 +106,15 @@ namespace GroceryApp
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
-           
-            IEnumerable<Grocery> list = _db.GetGroceries("testList");           // This method calls the current list and converts everything into a Ienumberable list
-            foreach (Grocery g in list)                                          // Goes through the list and adds each grocery name to the list
+
+            IEnumerable<Grocery> glist = _db.GetGroceries("List1");           // This method calls the current list and converts everything into a Ienumberable list
+            foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
             {
-                Items.Add(g.Name);
+                Items.Add(g.ToString());
 
             }
 
-            //Items.Add("Item 1");                                                //in the same way, except perhaps using a for loop or something to add all the items in a list to be displayed. May need to have
-            //Items.Add("Item 2");                                                //scrolling funtionality, but I will figure that out later.
-            //Items.Add("Item 3");
-            //Items.Add("Item 4");
-            //Items.Add("Item 5");
-            //Items.Add("Item 6");
-
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
         }
     }
