@@ -39,7 +39,6 @@ namespace GroceryApp
 
             deleteButton = FindViewById<Button>(Resource.Id.slDeleteButton);
             deleteButton.Click += DeleteList;
-
         }
 
         public void OpenMain(object sender, EventArgs e)

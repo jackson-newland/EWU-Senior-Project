@@ -32,57 +32,84 @@
         android:layout_below="@id/setlBackButton"
         android:id="@+id/setlBackButtonSpace1" />
 
-    <TextView
-        android:text="Start Date:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:text="Start Date"
+        android:textSize="6pt"
+        android:layout_width="90dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#9bb8f0"
+        android:textColor="@android:color/black"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@drawable/searchviewrounded"
         android:layout_below="@id/setlBackButtonSpace1"
         android:layout_toRightOf="@id/setlBackButtonSpace1"
-        android:id="@+id/setlStartDateText" />
+        android:id="@+id/setlStartDateButton" />    
 
      <Space
         android:layout_width="10dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/setlStartDateText"
+        android:layout_toRightOf="@id/setlStartDateButton"
         android:id="@+id/setlDateTextBoxSpace" />
 
-    <EditText
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/setlDateTextBoxSpace"
+        android:layout_alignBaseline="@id/setlStartDateButton"
+        android:id="@+id/setlStartDateText" />
+
+   <!-- <EditText
         android:inputType="date"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/setlDateTextBoxSpace"
         android:layout_alignBaseline="@id/setlStartDateText"
-        android:id="@+id/setlStartDateBox"
-        android:focusable="auto" />
+        android:id="@+id/setlStartDateBox"/>-->
 
      <Space
         android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_below="@id/setlStartDateText"
+        android:layout_below="@id/setlStartDateButton"
         android:id="@+id/setlStartDateTextSpace" /> 
 
+    <Button
+        android:text="End Date"
+        android:textSize="6pt"
+        android:layout_width="90dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#9bb8f0"
+        android:textColor="@android:color/black"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@drawable/searchviewrounded"
+        android:layout_below="@id/setlStartDateTextSpace"
+        android:layout_toRightOf="@id/setlBackButtonSpace1"
+        android:id="@+id/setlEndDateButton" />   
+
     <TextView
-        android:text="End Date:"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/setlStartDateTextSpace"
-        android:layout_toRightOf="@id/setlBackButtonSpace1"
+        android:layout_alignBaseline="@id/setlEndDateButton"
+        android:layout_toRightOf="@id/setlDateTextBoxSpace"
         android:id="@+id/setlEndDateText" />
 
-    <EditText
+    <!--<EditText
         android:inputType="date"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/setlEndDateText"
         android:layout_toRightOf="@id/setlDateTextBoxSpace"
-        android:id="@+id/setlEndDateBox" />
+        android:id="@+id/setlEndDateBox" />-->
 
      <Space
         android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_below="@id/setlEndDateBox"
+        android:layout_below="@id/setlEndDateButton"
         android:id="@+id/setlEndDateTextSpace" />
 
     <TextView
@@ -113,7 +140,7 @@
         android:textSize="6pt"
         android:layout_width="90dp"
         android:layout_height="55dp"
-        android:backgroundTint="#9bb8f0"
+        android:backgroundTint="#7fd178"
         android:textColor="@android:color/black"
         android:minWidth="25px"
         android:minHeight="25px"
@@ -133,6 +160,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/setlDatePickerSpace"
         android:layout_centerHorizontal="true"
-        android:id="@+id/setlDatePicker"/>
+        android:id="@+id/setlDatePicker"
+        
+        android:visibility="invisible" 
+         />
+    
 
 </RelativeLayout>
