@@ -49,7 +49,7 @@ namespace GroceryApp
 
         public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
         {
-            if ((selectedItems != null) && (!selectedItems.Any())) 
+            if (selectedItems != null)                      //(selectedItems != null) && (!selectedItems.Any())
             {
                 foreach (Grocery g in glist)
                 {
