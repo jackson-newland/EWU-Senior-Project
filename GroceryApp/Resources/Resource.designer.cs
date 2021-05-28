@@ -9406,7 +9406,7 @@ namespace GroceryApp
 			public const int setlDateTextBoxSpace = 2131230946;
 			
 			// aapt resource value: 0x7F0800E3
-			public const int setlEndDateBox = 2131230947;
+			public const int setlEndDateButton = 2131230947;
 			
 			// aapt resource value: 0x7F0800E4
 			public const int setlEndDateText = 2131230948;
@@ -9427,7 +9427,7 @@ namespace GroceryApp
 			public const int setlSetListScreenText = 2131230952;
 			
 			// aapt resource value: 0x7F0800E9
-			public const int setlStartDateBox = 2131230953;
+			public const int setlStartDateButton = 2131230953;
 			
 			// aapt resource value: 0x7F0800EA
 			public const int setlStartDateText = 2131230954;

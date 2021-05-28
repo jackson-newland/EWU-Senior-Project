@@ -9,9 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Extensions;
 using Xamarin.Forms;
 using System.IO;
-using SQLiteNetExtensions.Attributes;
+
 
 namespace GroceryApp
 {
@@ -186,6 +187,15 @@ namespace GroceryApp
             // return (from s in stores select s).ToList();
         }
 
+        public bool DoesListExist(string listName)
+        {
+            if (_connection.Find<GroceryLists>(listName) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         // Work in progress method that would of worked with sql.net extensions, but couldn't get the extension to work
         //public Grocery GetGroceriesList(string listName)
@@ -199,4 +209,5 @@ namespace GroceryApp
         //   // return _connection.Get<GroceryLists>(listName).Groceries;
         //}
     }
+
 }
