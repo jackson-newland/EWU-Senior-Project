@@ -22,6 +22,7 @@ namespace GroceryApp
         GroceryAppDB _db;
         IEnumerable<Grocery> glist;
         string currentList;
+        int selectCounter = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -59,7 +60,7 @@ namespace GroceryApp
                     }
                 }
                 DisplayList();
-                numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);       //THIS LINE AND THE ONE BELOW IS BEING TESTED RIGHT NOW
+                numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);      
                 numSelectedDelGro.Text = "0";
             }
         }
@@ -90,7 +91,6 @@ namespace GroceryApp
             selectedItems = new List<string>();
             string selectedGroc = Items[e.Position];
             numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
-            int selectCounter = 0;
 
             if (selectedItems.Contains(selectedGroc))
             {
