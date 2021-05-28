@@ -16,12 +16,12 @@ namespace GroceryApp
     {
         ImageButton backButton;
         Button deleteButton, deleteAllButton;
-        List<string> Items;
-        ListView ListViewDelGro;
+        List<string> Items, selectedItems;
+        ListView listViewDelGro;
+        TextView numSelectedDelGro;
         GroceryAppDB _db;
-        List<string> selectedItems;
         IEnumerable<Grocery> glist;
-        String currentList;
+        string currentList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,7 +30,7 @@ namespace GroceryApp
             currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
             DisplayList();                                                                               //Calls ListView displaying method.
 
-            backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
+            backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
             backButton.Click += OpenMain;
 
             deleteButton = FindViewById<Button>(Resource.Id.deleteButtonDeleteGrocery);
@@ -49,7 +49,7 @@ namespace GroceryApp
 
         public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
         {
-            if (selectedItems != null)                      //(selectedItems != null) && (!selectedItems.Any())
+            if (selectedItems != null)                      
             {
                 foreach (Grocery g in glist)
                 {
@@ -59,6 +59,8 @@ namespace GroceryApp
                     }
                 }
                 DisplayList();
+                numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);       //THIS LINE AND THE ONE BELOW IS BEING TESTED RIGHT NOW
+                numSelectedDelGro.Text = "0";
             }
         }
 
@@ -70,10 +72,8 @@ namespace GroceryApp
 
         public void DisplayList()                                   
         {
-            ListViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
-
+            listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
             Items = new List<string>();                                           
-
             glist = _db.GetGroceries("List1");                                    //This method calls the current list and converts everything into a Ienumberable list.
             foreach (Grocery g in glist)                                          //Goes through the list and adds each grocery in format to the list.
             {
@@ -81,23 +81,30 @@ namespace GroceryApp
             }
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
-            ListViewDelGro.Adapter = adapter;
-            ListViewDelGro.ItemClick += ListViewDelGro_ItemClick;                                                //This line and below is being written and test currently.
+            listViewDelGro.Adapter = adapter;
+            listViewDelGro.ItemClick += ListViewDelGro_ItemClick;                                                
         }
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             selectedItems = new List<string>();
-            String selectedGroc = Items[e.Position];
+            string selectedGroc = Items[e.Position];
+            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
+            int selectCounter = 0;
+
             if (selectedItems.Contains(selectedGroc))
             {
                 selectedItems.Remove(selectedGroc);
+                selectCounter--;
+                numSelectedDelGro.Text = selectCounter.ToString();
             }
             else
             {
                 selectedItems.Add(selectedGroc);
+                selectCounter++;
+                numSelectedDelGro.Text = selectCounter.ToString();
             }
-
         }
+
     }
 }
