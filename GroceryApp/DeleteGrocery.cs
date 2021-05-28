@@ -70,20 +70,20 @@ namespace GroceryApp
 
             Items = new List<string>();                                           
 
-            glist = _db.GetGroceries("List1");               //This method calls the current list and converts everything into a Ienumberable list.
-            foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery in format to the list.
+            glist = _db.GetGroceries("List1");                                    //This method calls the current list and converts everything into a Ienumberable list.
+            foreach (Grocery g in glist)                                          //Goes through the list and adds each grocery in format to the list.
             {
                 Items.Add(g.ToString());
             }
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewDelGro.Adapter = adapter;
-
             ListViewDelGro.ItemClick += ListViewDelGro_ItemClick;                                                //This line and below is being written and test currently.
         }
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            selectedItems = new List<string>();
             String selectedGroc = Items[e.Position];
             if (selectedItems.Contains(selectedGroc))
             {
