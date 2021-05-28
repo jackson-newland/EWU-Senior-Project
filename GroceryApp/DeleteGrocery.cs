@@ -31,6 +31,7 @@ namespace GroceryApp
             currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
             DisplayList();                                                                               //Calls ListView displaying method.
 
+            selectedItems = new List<string>();
             backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
             backButton.Click += OpenMain;
 
@@ -49,11 +50,11 @@ namespace GroceryApp
         }
 
         public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
-        {
-            if (selectedItems != null)                      
-            {
-                foreach (Grocery g in glist)
-                {
+        {                                                                               //populated with strings equal to the groceries (in ToString form) that are clicked/tapped by
+            if (selectedItems != null)                                                  //user. If the user taps the grocery again and the list already contains it, it is removed.
+            {                                                                           //This foreach loop activates upon the delete button being clicked and goes through all of the
+                foreach (Grocery g in glist)                                            //groceries in the list and sees if they appear in their ToString form in the aformention list
+                {                                                                       //that keeps track of which items have been selected in the ListView.
                     if (selectedItems.Contains(g.ToString()))
                     {
                         _db.DeleteGrocery(g.ID);
@@ -77,8 +78,8 @@ namespace GroceryApp
         {
             listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
             Items = new List<string>();                                           
-            glist = _db.GetGroceries("List1");                                    //This method calls the current list and converts everything into a Ienumberable list.
-            foreach (Grocery g in glist)                                          //Goes through the list and adds each grocery in format to the list.
+            glist = _db.GetGroceries("List1");                                          //This method calls the current list and converts everything into a Ienumberable list.
+            foreach (Grocery g in glist)                                                //Goes through the list and adds each grocery in format to the list.
             {
                 Items.Add(g.ToString());
             }
@@ -90,7 +91,6 @@ namespace GroceryApp
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            selectedItems = new List<string>();
             string selectedGroc = Items[e.Position];
             numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
 
