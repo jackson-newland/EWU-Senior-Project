@@ -62,6 +62,7 @@ namespace GroceryApp
                 DisplayList();
                 numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);      
                 numSelectedDelGro.Text = "0";
+                selectCounter = 0;
             }
         }
 
