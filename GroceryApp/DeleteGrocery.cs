@@ -48,13 +48,17 @@ namespace GroceryApp
         }
 
         public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
-        {                                                                               //populated with strings equal to the groceries (in ToString form) that are clicked/tapped by 
-            foreach (Grocery g in glist)                                                //user. If the user taps the grocery again and the list already contains it, it is removed.              
-            {                                                                           //This foreach loop activates upon the delete button being clicked and goes through all of the
-                if (selectedItems.Contains(g.ToString()))                               //groceries in the list and sees if they appear in their ToString form in the aformention list
-                {                                                                       //that keeps track of which items have been selected in the ListView.
-                    _db.DeleteGrocery(g.ID);
+        {
+            if ((selectedItems != null) && (!selectedItems.Any())) 
+            {
+                foreach (Grocery g in glist)
+                {
+                    if (selectedItems.Contains(g.ToString()))
+                    {
+                        _db.DeleteGrocery(g.ID);
+                    }
                 }
+                DisplayList();
             }
         }
 
