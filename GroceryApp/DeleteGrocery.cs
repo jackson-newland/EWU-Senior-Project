@@ -59,10 +59,11 @@ namespace GroceryApp
                         _db.DeleteGrocery(g.ID);
                     }
                 }
-                DisplayList();
-                numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);      
+                numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);
                 numSelectedDelGro.Text = "0";
                 selectCounter = 0;
+                selectedItems.Clear();
+                DisplayList();
             }
         }
 
