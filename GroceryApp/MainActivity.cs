@@ -33,8 +33,8 @@ namespace GroceryApp
             _db.AddGroceryList("List1", 150);
             _db.AddGroceryList("List2", 120);
             _db.AddGrocery("List1", "Milk", 5, "Coupon", "Safeway");
-           // _db.AddGrocery("List1", "Apple", 3, "Coupon", "Safeway");
-           // _db.AddGrocery("List1", "Orange", 2, "Coupon", "Safeway");
+            _db.AddGrocery("List1", "Apple", 3, "Coupon", "Safeway");
+            _db.AddGrocery("List1", "Orange", 2, "Coupon", "Safeway");
             _db.AddGrocery("List2", "Milk", 5, "Coupon", "Safeway");
             _db.AddGrocery("List2", "Eggs", 4, "Coupon", "Safeway");
 
