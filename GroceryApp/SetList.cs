@@ -1,4 +1,4 @@
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -23,8 +23,7 @@ namespace GroceryApp
         DatePicker calendar;
         GroceryAppDB _db = new GroceryAppDB();
         private int sYear, eYear, sMonth, eMonth, sDay, eDay;
-
-
+                
         protected override void OnCreate(Bundle savedInstanceState) // creates the set list screen
         {
             base.OnCreate(savedInstanceState);
@@ -53,6 +52,7 @@ namespace GroceryApp
             set = FindViewById<Button>(Resource.Id.setlSetButton);
             set.Click += Set_Click;
 
+          
 
         }
 
@@ -69,8 +69,13 @@ namespace GroceryApp
                         if (!_db.DoesListExist(listName)) // checks if the list already exists in the database, if not creates a new list and returns the user to Select List Screen
                         {
                             _db.AddGroceryList(listName, Double.Parse(budget.Text.ToString()));
-                            Intent intent = new Intent(this, typeof(SelectList));
-                            StartActivity(intent);
+                            Intent data = new Intent();
+                           // data.PutExtra("newList", listName);
+                            data.SetData(Android.Net.Uri.Parse(listName));
+                            //   Intent intent = new Intent(this, typeof(SelectList));
+                            SetResult(Result.Ok, data);
+                            Finish();
+                           // StartActivity(intent);
                         }
                         else
                         {
@@ -116,8 +121,11 @@ namespace GroceryApp
 
         public void OpenSelectList(object sender, EventArgs e) // opens select list screen
         {
-            Intent intent = new Intent(this, typeof(SelectList));
-            StartActivity(intent);
+            //Intent intent = new Intent(this, typeof(SelectList));
+            Intent data = new Intent();
+            SetResult(Result.Canceled, data);
+            Finish();
+         //   StartActivity(intent);
         }
 
         public void StartDateClick(object send, EventArgs e) // enables calendar after start date button is clicked

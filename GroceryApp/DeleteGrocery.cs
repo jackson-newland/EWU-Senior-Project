@@ -1,4 +1,4 @@
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -69,15 +69,15 @@ namespace GroceryApp
         }
 
         public void DeleteAll(object sender, EventArgs e)
-        {   
+        {
             _db.DeleteAllGrocery(currentList);                                          //Delete All Groceries. Changed it to use Jackson's helper method in the GroceryAppDB class.
             DisplayList();
         }
 
-        public void DisplayList()                                   
+        public void DisplayList()
         {
             listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
-            Items = new List<string>();                                           
+            Items = new List<string>();
             glist = _db.GetGroceries("List1");                                          //This method calls the current list and converts everything into a Ienumberable list.
             foreach (Grocery g in glist)                                                //Goes through the list and adds each grocery in format to the list.
             {
@@ -86,7 +86,7 @@ namespace GroceryApp
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             listViewDelGro.Adapter = adapter;
-            listViewDelGro.ItemClick += ListViewDelGro_ItemClick;                                                
+            listViewDelGro.ItemClick += ListViewDelGro_ItemClick;
         }
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

@@ -1,4 +1,4 @@
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -33,7 +33,7 @@ namespace GroceryApp
             StartActivity(intent);
         }
 
-        public void DisplayList()                                               
+        public void DisplayList()
         {
             ListViewAddGro = FindViewById<ListView>(Resource.Id.listViewAddGrocery);
 

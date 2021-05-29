@@ -13,7 +13,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace GroceryApp
 {
-    [Table("Grocery_Lists")] // Grocery list table
+      [Table("Grocery_Lists")] // Grocery list table
     class GroceryLists
     {
         [PrimaryKey]
@@ -25,5 +25,5 @@ namespace GroceryApp
 
         public GroceryLists() { }
     }
-
+    
 }

@@ -59,7 +59,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -72,7 +71,6 @@
     <Compile Include="DeleteGrocery.cs" />
     <Compile Include="Grocery.cs" />
     <Compile Include="GroceryAppDB.cs" />
-    <Compile Include="GroceryInterface.cs" />
     <Compile Include="GroceryLists.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -80,7 +78,6 @@
     <Compile Include="SelectList.cs" />
     <Compile Include="SetList.cs" />
     <Compile Include="SetStore.cs" />
-    <Compile Include="SQLite_Android.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="ViewCoupon.cs" />
   </ItemGroup>
@@ -116,9 +113,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite.Core">
-      <Version>5.0.5</Version>
-    </PackageReference>
     <PackageReference Include="sqlite-net">
       <Version>1.6.292</Version>
     </PackageReference>

@@ -16,8 +16,8 @@ namespace GroceryApp
 {
 
     public interface GroceryInterface
-    {
-        SQLiteConnection GetConnection();
-    }
-
+        {
+            SQLiteConnection GetConnection();
+        }
+    
 }

@@ -1,4 +1,4 @@
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
@@ -19,6 +19,9 @@ namespace GroceryApp
         Button setListButton, setStoreButton, deleteCouponsButton, selectListButton, deleteGroceryButton, addGroceryButton;
         List<string> Items;
         ListView ListViewMain;
+        TextView storeName, listName;
+        string currentList;
+        int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
         GroceryAppDB _db;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,6 +31,8 @@ namespace GroceryApp
             SetContentView(Resource.Layout.activity_main);
 
             _db = new GroceryAppDB(); // Creates the connection to the database
+
+            
 
             // Used for testing lists and groceries
             _db.AddGroceryList("List1", 150);
@@ -46,7 +51,7 @@ namespace GroceryApp
             //  _db.AddGrocery("test", "Orange", 2.50, "coupon", "safeway");
             //  _db.AddGrocery("test", "Apple", 3.25, "coupon", "safeway");
 
-            DisplayList();                                                                              //Calls ListView displaying method.
+                                                                                      //Calls ListView displaying method.
 
             setListButton = FindViewById<Button>(Resource.Id.setListButtonMain);
             setListButton.Click += OpenSelectList;
@@ -59,6 +64,11 @@ namespace GroceryApp
 
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
+
+            storeName = FindViewById<TextView>(Resource.Id.currentStoreMain);
+            listName = FindViewById<TextView>(Resource.Id.dateRangeMain);
+
+            DisplayList();
 
             // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
 
@@ -73,32 +83,40 @@ namespace GroceryApp
 
         public void OpenSelectList(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(SelectList));
-            StartActivity(intent);
+          //  Intent intent = new Intent(this, typeof(SelectList));
+              
+              StartActivityForResult(typeof(SelectList), requestCodeList);
+          //  StartActivity(intent);
         }
 
         public void OpenSetSore(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(SetStore));
-            StartActivity(intent);
+         //   Intent intent = new Intent(this, typeof(SetStore));
+          //  StartActivity(intent);
+
+            StartActivityForResult(typeof(SetStore), requestCodeStore);
         }
 
         public void OpenDeleteCoupon(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(DeleteCoupon));
-            StartActivity(intent);
+            // Intent intent = new Intent(this, typeof(DeleteCoupon));
+            //  StartActivity(intent);
+            StartActivityForResult(typeof(DeleteCoupon), requestCodeDeleteCoupon);
         }
 
         public void OpenDeleteGrocery(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(DeleteGrocery));
-            StartActivity(intent);
+            //Intent intent = new Intent(this, typeof(DeleteGrocery));
+            //StartActivity(intent);
+            StartActivityForResult(typeof(DeleteGrocery), requestCodeDeleteGrocery);
+
         }
 
         public void OpenAddGrocery(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(AddGrocery));
-            StartActivity(intent);
+            //Intent intent = new Intent(this, typeof(AddGrocery));
+            //StartActivity(intent);
+            StartActivityForResult(typeof(AddGrocery), requestCodeAddGrocery);
         }
 
         public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
@@ -106,16 +124,42 @@ namespace GroceryApp
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
+                                   
+                IEnumerable<Grocery> glist = _db.GetGroceries(currentList);           // This method calls the current list and converts everything into a Ienumberable list
+                foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
+                {
+                    Items.Add(g.ToString());
 
-            IEnumerable<Grocery> glist = _db.GetGroceries("List1");           // This method calls the current list and converts everything into a Ienumberable list
-            foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
-            {
-                Items.Add(g.ToString());
-
-            }
+                }
+             
+           
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) // returns the data from the screens
+        {
+
+            switch (requestCode)
+            {
+                case 1:
+                    if (resultCode == Result.Ok)
+                    {
+                        listName.Text = data.Data.ToString();
+                        currentList = data.Data.ToString();
+                        DisplayList();
+                    }
+                    else if (resultCode == Result.Canceled)
+                    {
+                        DisplayList();
+                    }
+                    break;
+
+
+            }
+
+          
         }
     }
 }
