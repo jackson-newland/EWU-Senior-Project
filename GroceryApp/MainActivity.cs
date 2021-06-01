@@ -119,13 +119,13 @@ namespace GroceryApp
             StartActivityForResult(typeof(AddGrocery), requestCodeAddGrocery);
         }
 
-        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        public void DisplayList()                                               
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
                                    
-                IEnumerable<Grocery> glist = _db.GetGroceries(currentList);           // This method calls the current list and converts everything into a Ienumberable list
+                IEnumerable<Grocery> glist = _db.GetGroceries("List1");     //Change List1 back to currentList!      // This method calls the current list and converts everything into a Ienumberable list
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
                 {
                     Items.Add(g.ToString());

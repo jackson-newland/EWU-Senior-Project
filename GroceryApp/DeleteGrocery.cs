@@ -106,7 +106,6 @@ namespace GroceryApp
                 selectCounter++;
                 numSelectedDelGro.Text = selectCounter.ToString();
             }
-            DisplayList();
         }
 
     }
