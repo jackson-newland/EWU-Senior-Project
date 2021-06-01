@@ -101,14 +101,14 @@ namespace GroceryApp
                 selectedItems.Remove(selectedGroc);
                 selectCounter--;
                 numSelectedDelGro.Text = selectCounter.ToString();
-                e.View.SetBackgroundColor(Android.Graphics.Color.White);                          //Trying stuff to get the background to change.
+                e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("#F8F8FC"));                          //Trying stuff to get the background to change.
             }
             else                                                                                            //If the item isn't selected.
             {
                 selectedItems.Add(selectedGroc);
                 selectCounter++;
                 numSelectedDelGro.Text = selectCounter.ToString();
-                e.View.SetBackgroundColor(Android.Graphics.Color.Blue);                          //Trying stuff to get the background to change.
+                e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("B6CDFA"));                          //Trying stuff to get the background to change.
             }
         }
 
