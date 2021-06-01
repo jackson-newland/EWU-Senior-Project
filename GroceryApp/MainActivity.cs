@@ -65,6 +65,9 @@ namespace GroceryApp
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
 
+            addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
+            addGroceryButton.Click += OpenAddGrocery;
+
             storeName = FindViewById<TextView>(Resource.Id.currentStoreMain);
             listName = FindViewById<TextView>(Resource.Id.dateRangeMain);
 
@@ -125,7 +128,7 @@ namespace GroceryApp
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
                                    
-                IEnumerable<Grocery> glist = _db.GetGroceries("List1");     //Change List1 back to currentList!      // This method calls the current list and converts everything into a Ienumberable list
+                IEnumerable<Grocery> glist = _db.GetGroceries(currentList);         // This method calls the current list and converts everything into a Ienumberable list
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
                 {
                     Items.Add(g.ToString());

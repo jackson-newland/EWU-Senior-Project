@@ -94,17 +94,18 @@ namespace GroceryApp
             string selectedGroc = Items[e.Position];
             numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               
 
-            if (selectedItems.Contains(selectedGroc))
+            if (selectedItems.Contains(selectedGroc))                                                       //If the item in the listview has already been selected.
             {
                 selectedItems.Remove(selectedGroc);
                 selectCounter--;
                 numSelectedDelGro.Text = selectCounter.ToString();
             }
-            else
+            else                                                                                            //If the item isn't selected.
             {
                 selectedItems.Add(selectedGroc);
                 selectCounter++;
                 numSelectedDelGro.Text = selectCounter.ToString();
+
             }
         }
 
