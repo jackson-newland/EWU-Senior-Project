@@ -92,7 +92,7 @@ namespace GroceryApp
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             string selectedGroc = Items[e.Position];
-            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
+            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               
 
             if (selectedItems.Contains(selectedGroc))
             {
