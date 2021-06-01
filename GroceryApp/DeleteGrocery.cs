@@ -84,7 +84,7 @@ namespace GroceryApp
                 Items.Add(g.ToString());
             }
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             listViewDelGro.Adapter = adapter;
             listViewDelGro.ItemClick += ListViewDelGro_ItemClick;
         }
