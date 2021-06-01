@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Android.Graphics;
 
 namespace GroceryApp
 {
@@ -90,7 +91,8 @@ namespace GroceryApp
         }
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
+        {                                                                                              
+
             string selectedGroc = Items[e.Position];
             numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               
 
@@ -99,13 +101,14 @@ namespace GroceryApp
                 selectedItems.Remove(selectedGroc);
                 selectCounter--;
                 numSelectedDelGro.Text = selectCounter.ToString();
+                e.View.SetBackgroundColor(Android.Graphics.Color.White);                          //Trying stuff to get the background to change.
             }
             else                                                                                            //If the item isn't selected.
             {
                 selectedItems.Add(selectedGroc);
                 selectCounter++;
                 numSelectedDelGro.Text = selectCounter.ToString();
-
+                e.View.SetBackgroundColor(Android.Graphics.Color.Blue);                          //Trying stuff to get the background to change.
             }
         }
 
