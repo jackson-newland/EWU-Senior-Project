@@ -17,7 +17,7 @@ namespace GroceryApp
     [Table("storeItems")]
     class CategoryItem
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public string itemName { get; set; }
         public double currentPrice { get; set; }
         public double regPrice { get; set; }
@@ -25,12 +25,16 @@ namespace GroceryApp
         public string category { get; set; }
         public string store { get; set; }
 
-        
+
 
         public CategoryItem()
         {
         }
 
-        
+        public override string ToString()
+        {
+            return itemName.PadRight(10, ' ') + "\n$" + regPrice;
+        }
+
     }
 }

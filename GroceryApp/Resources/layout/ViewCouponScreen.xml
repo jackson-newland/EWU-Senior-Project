@@ -46,10 +46,10 @@
         />-->
 
      <Button
-        android:text="Add"
+        android:text="Apply"
         android:layout_height="55dp"
         android:layout_width="90dp"
-        android:id="@+id/vcAddButton"
+        android:id="@+id/vcApplyButton"
         android:background="@drawable/searchviewrounded"
         android:textColor="#ff000000"
         android:backgroundTint="#7fd178"

@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Android.Graphics;
 
 namespace GroceryApp
 {
@@ -29,8 +28,9 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
             _db = new GroceryAppDB();
-            currentList = "";                                                                            //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
-            DisplayList();                                                                               //Calls ListView displaying method.
+             
+
+            currentList = Intent.GetStringExtra("currentList");
 
             selectedItems = new List<string>();
             backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
@@ -42,6 +42,7 @@ namespace GroceryApp
             deleteAllButton = FindViewById<Button>(Resource.Id.deleteAllButtonDeleteGrocery);
             deleteAllButton.Click += DeleteAll;
 
+            DisplayList();
         }
 
         public void OpenMain(object sender, EventArgs e)
@@ -86,25 +87,24 @@ namespace GroceryApp
                 Items.Add(g.ToString());
             }
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             listViewDelGro.Adapter = adapter;
             listViewDelGro.ItemClick += ListViewDelGro_ItemClick;
         }
 
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {                                                                                              
-
+        {
             string selectedGroc = Items[e.Position];
-            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               
+            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
 
-            if (selectedItems.Contains(selectedGroc))                                                       //If the item in the listview has already been selected.
+            if (selectedItems.Contains(selectedGroc))
             {
                 selectedItems.Remove(selectedGroc);
                 selectCounter--;
                 numSelectedDelGro.Text = selectCounter.ToString();
                 e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("#F8F8FC"));                    //Changes background color back to the original whitish color.
             }
-            else                                                                                            //If the item isn't selected.
+            else
             {
                 selectedItems.Add(selectedGroc);
                 selectCounter++;

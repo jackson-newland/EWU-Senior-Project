@@ -29,9 +29,9 @@ namespace GroceryApp
             Items = new List<string>();
             StoresList = new List<Store>();
 
-            _db.AddStore("Fred Meyer", "400 S Thor St, Spokane, WA 99202");
-            _db.AddStore("Walmart", "5025 E Sprague Ave, Spokane Valley, WA 99212");
-            _db.AddStore("Safeway", "1616 W Northwest Blvd, Spokane, WA 99205");
+            //_db.AddStore("Fred Meyer", "400 S Thor St, Spokane, WA 99202");
+            //_db.AddStore("Walmart", "5025 E Sprague Ave, Spokane Valley, WA 99212");
+            //_db.AddStore("Safeway", "1616 W Northwest Blvd, Spokane, WA 99205");
 
             listSetStore = FindViewById<ListView>(Resource.Id.ssStoreInfoList);
             listSetStore.ItemClick += ListSetStore_ItemClick;
@@ -77,7 +77,7 @@ namespace GroceryApp
 
         private void ListSetStore_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            currentStore.Text = Items[e.Position];
+            currentStore.Text = StoresList[e.Position].Name;
             currentAddress = StoresList[e.Position].Address;
         }
 

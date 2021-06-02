@@ -33,7 +33,7 @@ namespace GroceryApp
 
         public override string ToString()
         {
-            return Name.PadRight(10, ' ') + "$" + Price + Coupon.PadLeft(10, ' ') + Store.PadLeft(10, ' ');
+            return Name.PadRight(10, ' ') + "\n$" + Price;
         }
     }
 }
