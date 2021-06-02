@@ -45,8 +45,9 @@ namespace GroceryApp
 
         public void OpenMain(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(MainActivity));
-            StartActivity(intent);
+            Intent data = new Intent();
+            SetResult(Result.Canceled, data);
+            Finish();
         }
 
         public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
