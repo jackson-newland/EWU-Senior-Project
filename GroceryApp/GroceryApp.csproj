@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddGrocery.cs" />
+    <Compile Include="BackupData.cs" />
+    <Compile Include="CategoryItem.cs" />
     <Compile Include="DeleteCoupon.cs" />
     <Compile Include="DeleteGrocery.cs" />
     <Compile Include="Grocery.cs" />
@@ -85,6 +87,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\groceryData.db" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.xml">

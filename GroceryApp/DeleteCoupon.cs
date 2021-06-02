@@ -44,19 +44,14 @@ namespace GroceryApp
 
         public void DeleteSelectedCoupon(object sender, EventArgs e)
         {
-            //Intent intent = new Intent(this, typeof(MainActivity));
-            //StartActivity(intent);
-
             //SQL command to remove coupon with corresponding ID.
 
         }
 
         public void DeleteAllCoupons(object sender, EventArgs e)
         {
-            //Intent intent = new Intent(this, typeof(MainActivity));
-            //StartActivity(intent);
-
             //SQL command to remove all coupons saved. Won't the web scraper pick them up again later though?
+
         }
 
         public void DisplayList()
