@@ -27,7 +27,7 @@
         android:layout_marginLeft="25.0dp" 
         />
     <TextView
-        android:text="Select a store"
+        android:text="Select A Store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ssCurrentStoreInfoText"

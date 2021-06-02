@@ -105,7 +105,7 @@
         />
     <TextView
         android:id="@+id/currentStoreMain"
-        android:text="Placeholder Store"
+        android:text="Select A Store"
         android:textColor="#777777"
         android:layout_width="170dp"
         android:layout_height="20dp"
@@ -114,13 +114,53 @@
         />
     <TextView
         android:id="@+id/dateRangeMain"
-        android:text="Placeholder Range"
+        android:text="Select A Date Range"
         android:textColor="#777777"
         android:layout_width="170dp"
         android:layout_height="20dp"
         android:layout_marginTop="117.5dp"
         android:layout_marginLeft="34.0dp" 
         />
+    <TextView
+        android:id="@+id/budgetMain"
+        android:text="Budget: "
+        android:textColor="#777777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="224.0dp"
+        android:layout_marginLeft="34.0dp"      
+        />
+
+    <TextView
+        android:id="@+id/budgetMainValue"
+        android:text="0"
+        android:textColor="#777777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="224.0dp"
+        android:layout_marginLeft="85.0dp"      
+        />
+
+    <TextView
+        android:id="@+id/remBudgetMain"
+        android:text="Remaining Budget: "
+        android:textColor="#777777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="224.0dp"
+        android:layout_marginLeft="200.0dp"      
+        />
+
+    <TextView
+        android:id="@+id/remBudgetMainValue"
+        android:text="0"
+        android:textColor="#777777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="224.0dp"
+        android:layout_marginLeft="320.0dp"      
+        />
+
     <ListView
         android:id="@+id/listViewMain"
         android:minWidth="25px"
@@ -128,7 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="#f8fcfc"
-        android:layout_marginTop="228.5dp"
+        android:layout_marginTop="250.0dp"
         android:layout_marginLeft="0.0dp"
         android:layout_marginRight="0.0dp" 
         />

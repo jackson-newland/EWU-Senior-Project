@@ -26,7 +26,6 @@
         android:layout_marginBottom="0.0dp"
         android:queryHint="Search"
         android:background="#f8fcfc" 
-
         />
     <Button
         android:id="@+id/addButtonAddGrocery"

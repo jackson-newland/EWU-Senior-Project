@@ -15,16 +15,95 @@ namespace GroceryApp
     public class AddGrocery : Activity
     {
         ImageButton backButton;
+        Button addButton;
+        SearchView searchBar;
         List<string> Items;
+        List<CategoryItem> Cate;
         ListView ListViewAddGro;
+        GroceryData _db;
+        GroceryAppDB _GADB;
+        string currentList, currentStore;
+        IEnumerable<CategoryItem> categoryList;
+        CategoryItem selectedGrocery;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.AddGroceryScreen);
-            DisplayList();                                                                                  //Calls ListView displaying method.
-            backButton = FindViewById<ImageButton>(Resource.Id.addGroceryBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on add grocery screen.
-            backButton.Click += OpenMain;
+            _db = new GroceryData();
+            _GADB = new GroceryAppDB();
+            currentList = Intent.GetStringExtra("currentList");
+            currentStore = Intent.GetStringExtra("currentStore");
 
+            Items = new List<string>();
+            Cate = new List<CategoryItem>();
+       
+
+            ListViewAddGro = FindViewById<ListView>(Resource.Id.listViewAddGrocery);
+            ListViewAddGro.ItemClick += ListViewAddGro_ItemClick;
+
+            searchBar = FindViewById<SearchView>(Resource.Id.searchViewAddGrocery);
+            searchBar.QueryTextSubmit += SearchBar_QueryTextSubmit;
+          //  searchBar.QueryTextChange += SearchBar_QueryTextChange;
+
+            addButton = FindViewById<Button>(Resource.Id.addButtonAddGrocery);
+            addButton.Click += AddButton_Click;
+
+                                                                                            //Calls ListView displaying method.
+            backButton = FindViewById<ImageButton>(Resource.Id.addGroceryBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on add grocery screen.
+            backButton.Click += OpenMain;    
+            
+
+
+            //  DisplayList();
+        }
+
+        private void ListViewAddGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+          
+            selectedGrocery = new CategoryItem
+            {
+                itemName = Cate[e.Position].itemName,
+                currentPrice = Cate[e.Position].currentPrice,
+                regPrice = Cate[e.Position].regPrice,
+                coupon = Cate[e.Position].coupon,
+                category = Cate[e.Position].category,
+                store = Cate[e.Position].store
+            };
+
+        }
+
+        //private void SearchBar_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
+        //{
+        //    Items.Clear();
+        //    Cate.Clear();
+        //    foreach (CategoryItem i in _db.GetGroceries(currentStore,e.NewText))
+        //    {
+        //        Items.Add(i.itemName);
+        //        Cate.Add(i);
+        //    }
+        //    ArrayAdapter adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Items);
+        //    adapter.Filter.InvokeFilter(e.NewText);
+        //    ListViewAddGro.Adapter = adapter;
+        //}
+
+        private void SearchBar_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
+        {
+            Items.Clear();
+            Cate.Clear();
+            foreach (CategoryItem i in _db.GetGroceries(currentStore, e.Query))
+            {
+                Items.Add(i.ToString());
+                Cate.Add(i);
+            }
+            ArrayAdapter adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Items);
+            ListViewAddGro.Adapter = adapter;
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            _GADB.AddGrocery(currentList, selectedGrocery.itemName, selectedGrocery.regPrice, selectedGrocery.coupon, selectedGrocery.store);
+            AddedGroceryAlert();
         }
 
         public void OpenMain(object sender, EventArgs e)
@@ -36,18 +115,25 @@ namespace GroceryApp
 
         public void DisplayList()
         {
-            ListViewAddGro = FindViewById<ListView>(Resource.Id.listViewAddGrocery);
-
-            Items = new List<string>();
-            Items.Add("Item 1");
-            Items.Add("Item 2");
-            Items.Add("Item 3");
-            Items.Add("Item 4");
-            Items.Add("Item 5");
-            Items.Add("Item 6");
-
+            foreach (CategoryItem i in categoryList)
+            {
+                Items.Add(i.itemName);
+            }
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewAddGro.Adapter = adapter;
+        }
+
+        public void AddedGroceryAlert() // alert for a list that already exists
+        {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            AlertDialog alert = dialog.Create();
+            alert.SetTitle("Grocery Added!");
+            alert.SetMessage(selectedGrocery.itemName + "\n$" + selectedGrocery.regPrice);
+            alert.SetButton("OK", (c, ev) =>
+            {
+
+            });
+            alert.Show();
         }
 
     }

@@ -28,8 +28,9 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
             _db = new GroceryAppDB();
-            currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
-            DisplayList();                                                                               //Calls ListView displaying method.
+             
+
+            currentList = Intent.GetStringExtra("currentList");
 
             selectedItems = new List<string>();
             backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
@@ -41,6 +42,7 @@ namespace GroceryApp
             deleteAllButton = FindViewById<Button>(Resource.Id.deleteAllButtonDeleteGrocery);
             deleteAllButton.Click += DeleteAll;
 
+            DisplayList();
         }
 
         public void OpenMain(object sender, EventArgs e)
@@ -79,7 +81,7 @@ namespace GroceryApp
         {
             listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
             Items = new List<string>();
-            glist = _db.GetGroceries("List1");                                          //This method calls the current list and converts everything into a Ienumberable list.
+            glist = _db.GetGroceries(currentList);                                          //This method calls the current list and converts everything into a Ienumberable list.
             foreach (Grocery g in glist)                                                //Goes through the list and adds each grocery in format to the list.
             {
                 Items.Add(g.ToString());
@@ -100,12 +102,14 @@ namespace GroceryApp
                 selectedItems.Remove(selectedGroc);
                 selectCounter--;
                 numSelectedDelGro.Text = selectCounter.ToString();
+                e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("#F8F8FC"));                    //Changes background color back to the original whitish color.
             }
             else
             {
                 selectedItems.Add(selectedGroc);
                 selectCounter++;
                 numSelectedDelGro.Text = selectCounter.ToString();
+                e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("#B6CDFA"));                    //Changes background color to light blue for selected.
             }
         }
 
