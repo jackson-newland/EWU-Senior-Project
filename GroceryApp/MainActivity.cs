@@ -19,7 +19,7 @@ namespace GroceryApp
         Button setListButton, setStoreButton, deleteCouponsButton, selectListButton, deleteGroceryButton, addGroceryButton;
         List<string> Items;
         ListView ListViewMain;
-        TextView storeName, listName;
+        TextView storeName, listName, budget;
         string currentList, currentStore;
         int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
         GroceryAppDB _db;
@@ -41,17 +41,7 @@ namespace GroceryApp
             _db.AddGrocery("List1", "Apple", 3, "Coupon", "Safeway");
             _db.AddGrocery("List1", "Orange", 2, "Coupon", "Safeway");
             _db.AddGrocery("List2", "Milk", 5, "Coupon", "Safeway");
-            _db.AddGrocery("List2", "Eggs", 4, "Coupon", "Safeway");
-
-
-            // old
-            //This is a test for creating and adding items to the list
-            // _db.CreateTable("test");                                                                // creates a list called testList
-            // _db.AddGrocery("test", "Banana", 3.50, "coupon", "safeway");                                                 // adds a banana for $3.50 to the current list 
-            //  _db.AddGrocery("test", "Orange", 2.50, "coupon", "safeway");
-            //  _db.AddGrocery("test", "Apple", 3.25, "coupon", "safeway");
-
-                                                                                      //Calls ListView displaying method.
+            _db.AddGrocery("List2", "Eggs", 4, "Coupon", "Safeway");                                                                               
 
             setListButton = FindViewById<Button>(Resource.Id.setListButtonMain);
             setListButton.Click += OpenSelectList;
@@ -141,10 +131,7 @@ namespace GroceryApp
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
                 {
                     Items.Add(g.ToString());
-
-                }
-             
-           
+                }          
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
@@ -183,8 +170,10 @@ namespace GroceryApp
 
 
             }
+        }
+        public void getBudget()
+        {
 
-          
         }
     }
 }
