@@ -71,8 +71,7 @@ namespace GroceryApp
                 Items.Clear();
                 StoresList.Clear();
                 DisplayList();
-            }
-     
+            }   
         }
 
         private void ListSetStore_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -80,7 +79,6 @@ namespace GroceryApp
             currentStore.Text = StoresList[e.Position].Name;
             currentAddress = StoresList[e.Position].Address;
         }
-
 
         private void SetButton_Click(object sender, EventArgs e)
         {
@@ -106,16 +104,13 @@ namespace GroceryApp
 
         public void DisplayList()
         {
-                //Displays list of stored stores (selects which database is used basically.)
-
+            //Displays list of stored stores (selects which database is used basically.)
             IEnumerable<Store> sList = _db.GetStores();
             foreach (Store s in sList)
             {
                 Items.Add(s.ToString());
                 StoresList.Add(s);
-
             }
-
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             listSetStore.Adapter = adapter;
         }

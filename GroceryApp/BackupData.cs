@@ -26,7 +26,6 @@ namespace GroceryApp
             dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "groceryData.db");
             _connection = new SQLiteConnection(dbPath);
             _connection.CreateTable<CategoryItem>();
-
         }
 
         public List<GroceryApp.CategoryItem> selectTable()
@@ -63,17 +62,15 @@ namespace GroceryApp
                 coupon = coupon,
                 category = category,
                 store = store
-
             };
             _connection.Insert(newCategory);
-        }
-        
+        } 
        
         public double GetCurrentPrice(string itemName)
         {
             return _connection.Get<CategoryItem>(itemName).currentPrice;
-         //   var price =_connection.Query<CategoryItem>("SELECT currentPrice FROM storeItems WHERE itemName = '" + itemName + "'");
-          //  return price.ToString();
+            //var price =_connection.Query<CategoryItem>("SELECT currentPrice FROM storeItems WHERE itemName = '" + itemName + "'");
+            //return price.ToString();
         }
     }
 }

@@ -34,8 +34,6 @@ namespace GroceryApp
             _connection.CreateTable<Store>();
         }
 
-
-
         public IEnumerable<Grocery> GetGroceries(string listName) // takes all the items in the table and returns them into a ienumerable grocery type list
         {
             var groceryList = _connection.Query<Grocery>("SELECT * FROM Groceries WHERE ListName = '" + listName + "'");
@@ -59,7 +57,6 @@ namespace GroceryApp
             {
                 DeleteGrocery(g.ID);
             }
-
         }
 
         public void DeleteList(string listName) // deletes all groceries and deletes the inputed list
@@ -67,6 +64,7 @@ namespace GroceryApp
             DeleteAllGrocery(listName);
             _connection.Delete<GroceryLists>(listName);
         }
+
         public void AddGrocery(string listName, string name, double price, string coupon, string store) // adds grocery to the current list
         {
             var newGrocery = new Grocery
@@ -120,9 +118,9 @@ namespace GroceryApp
             }
             return false;
         }
+
         public void AddStore(string name, string address) // adds a store to the database
-        {
-            
+        {      
             var newStore = new Store
             {
                 Name = name,
@@ -176,4 +174,4 @@ namespace GroceryApp
         //}
     }
 
-    }
+}
