@@ -24,6 +24,13 @@ namespace GroceryApp
         public List<Grocery> Groceries { get; set; } // this doesn't work at the moment.
 
         public GroceryLists() { }
+
+        public override string ToString()
+        {
+            return Name.PadRight(55, ' ') + "$" + Budget;
+        }
     }
-    
+
+   
+
 }

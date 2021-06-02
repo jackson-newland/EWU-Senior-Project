@@ -195,6 +195,27 @@ namespace GroceryApp
             }
             return false;
         }
+        public void AddStore(string name, string address) // adds a store to the database
+        {
+            
+            var newStore = new Store
+            {
+                Name = name,
+                Address = address
+            };
+
+            _connection.Insert(newStore);
+        }
+
+        public void DeleteStore(string address)
+        {
+            _connection.Delete<Store>(address);
+        }
+
+        public void DeleteAllStores()
+        {
+            _connection.DeleteAll<Store>();
+        }
 
 
         // Work in progress method that would of worked with sql.net extensions, but couldn't get the extension to work
@@ -209,5 +230,5 @@ namespace GroceryApp
         //   // return _connection.Get<GroceryLists>(listName).Groceries;
         //}
     }
-    
-}
+
+    }

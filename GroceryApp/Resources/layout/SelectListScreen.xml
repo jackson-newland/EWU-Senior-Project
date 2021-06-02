@@ -77,7 +77,7 @@
         android:layout_marginTop="208.5dp"
         android:layout_marginLeft="30.5dp" 
         />
-    <TextView
+    <!--<TextView
         android:text="Start Date"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
@@ -85,9 +85,9 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/slStartDateText"
         android:layout_marginTop="208.5dp" 
-        />
+        />-->
     <TextView
-        android:text="End Date"
+        android:text="Budget"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

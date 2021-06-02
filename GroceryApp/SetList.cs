@@ -38,8 +38,6 @@ namespace GroceryApp
             startDateText = FindViewById<TextView>(Resource.Id.setlStartDateText);
             endDateText = FindViewById<TextView>(Resource.Id.setlEndDateText);
 
-
-
             startDate = FindViewById<Button>(Resource.Id.setlStartDateButton);
             startDate.Click += StartDateClick;
 

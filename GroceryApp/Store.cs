@@ -16,6 +16,12 @@ namespace GroceryApp
     class Store // store class that creates basic store information
     {
         public string Name { get; set; }
+        [PrimaryKey]
         public string Address { get; set; }
+
+        public override string ToString()
+        {
+            return Name.PadRight(10, ' ') + "\n" + Address;
+        }
     }
 }
