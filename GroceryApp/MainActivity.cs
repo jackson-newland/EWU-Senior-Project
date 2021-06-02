@@ -79,24 +79,16 @@ namespace GroceryApp
 
         public void OpenSelectList(object sender, EventArgs e)
         {
-          //  Intent intent = new Intent(this, typeof(SelectList));
-              
               StartActivityForResult(typeof(SelectList), requestCodeList);
-          //  StartActivity(intent);
         }
 
         public void OpenSetStore(object sender, EventArgs e)
         {
-         //   Intent intent = new Intent(this, typeof(SetStore));
-          //  StartActivity(intent);
-
             StartActivityForResult(typeof(SetStore), requestCodeStore);
         }
 
         public void OpenDeleteCoupon(object sender, EventArgs e)
         {
-            // Intent intent = new Intent(this, typeof(DeleteCoupon));
-            //  StartActivity(intent);
             Intent intent = new Intent(this, typeof(ViewCoupon));
             intent.PutExtra("currentStore", currentStore);
             StartActivityForResult(intent, requestCodeDeleteCoupon);
@@ -104,8 +96,6 @@ namespace GroceryApp
 
         public void OpenDeleteGrocery(object sender, EventArgs e)
         {
-            //Intent intent = new Intent(this, typeof(DeleteGrocery));
-            //StartActivity(intent);
             Intent intent = new Intent(this, typeof(DeleteGrocery));
             intent.PutExtra("currentStore", currentStore);
             StartActivityForResult(intent, requestCodeDeleteGrocery);
@@ -114,8 +104,6 @@ namespace GroceryApp
 
         public void OpenAddGrocery(object sender, EventArgs e)
         {
-            //Intent intent = new Intent(this, typeof(AddGrocery));
-            //StartActivity(intent);
             Intent intent = new Intent(this, typeof(AddGrocery));
             intent.PutExtra("currentStore", currentStore);
             StartActivityForResult(intent, requestCodeAddGrocery);
