@@ -20,7 +20,7 @@ namespace GroceryApp
         List<string> Items;
         ListView ListViewMain;
         TextView storeName, listName;
-        string currentList;
+        string currentList, currentStore;
         int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
         GroceryAppDB _db;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -57,7 +57,7 @@ namespace GroceryApp
             setListButton.Click += OpenSelectList;
 
             setStoreButton = FindViewById<Button>(Resource.Id.setStoreButtonMain);
-            setStoreButton.Click += OpenSetSore;
+            setStoreButton.Click += OpenSetStore;
 
             deleteCouponsButton = FindViewById<Button>(Resource.Id.couponsButtonMain);
             deleteCouponsButton.Click += OpenDeleteCoupon;
@@ -67,6 +67,9 @@ namespace GroceryApp
 
             storeName = FindViewById<TextView>(Resource.Id.currentStoreMain);
             listName = FindViewById<TextView>(Resource.Id.dateRangeMain);
+
+            addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
+            addGroceryButton.Click += OpenAddGrocery;
 
             DisplayList();
 
@@ -89,7 +92,7 @@ namespace GroceryApp
           //  StartActivity(intent);
         }
 
-        public void OpenSetSore(object sender, EventArgs e)
+        public void OpenSetStore(object sender, EventArgs e)
         {
          //   Intent intent = new Intent(this, typeof(SetStore));
           //  StartActivity(intent);
@@ -101,14 +104,18 @@ namespace GroceryApp
         {
             // Intent intent = new Intent(this, typeof(DeleteCoupon));
             //  StartActivity(intent);
-            StartActivityForResult(typeof(DeleteCoupon), requestCodeDeleteCoupon);
+            Intent intent = new Intent(this, typeof(ViewCoupon));
+            intent.PutExtra("currentStore", currentStore);
+            StartActivityForResult(intent, requestCodeDeleteCoupon);
         }
 
         public void OpenDeleteGrocery(object sender, EventArgs e)
         {
             //Intent intent = new Intent(this, typeof(DeleteGrocery));
             //StartActivity(intent);
-            StartActivityForResult(typeof(DeleteGrocery), requestCodeDeleteGrocery);
+            Intent intent = new Intent(this, typeof(DeleteGrocery));
+            intent.PutExtra("currentStore", currentStore);
+            StartActivityForResult(intent, requestCodeDeleteGrocery);
 
         }
 
@@ -116,7 +123,9 @@ namespace GroceryApp
         {
             //Intent intent = new Intent(this, typeof(AddGrocery));
             //StartActivity(intent);
-            StartActivityForResult(typeof(AddGrocery), requestCodeAddGrocery);
+            Intent intent = new Intent(this, typeof(AddGrocery));
+            intent.PutExtra("currentStore", currentStore);
+            StartActivityForResult(intent, requestCodeAddGrocery);
         }
 
         public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
@@ -148,6 +157,19 @@ namespace GroceryApp
                     {
                         listName.Text = data.Data.ToString();
                         currentList = data.Data.ToString();
+                        DisplayList();
+                    }
+                    else if (resultCode == Result.Canceled)
+                    {
+                        DisplayList();
+                    }
+                    break;
+
+                case 2:
+                    if (resultCode == Result.Ok)
+                    {
+                        storeName.Text = data.Data.ToString();
+                        currentStore = data.Data.ToString();
                         DisplayList();
                     }
                     else if (resultCode == Result.Canceled)

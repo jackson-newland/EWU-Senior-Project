@@ -38,8 +38,9 @@ namespace GroceryApp
 
         public void OpenMain(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(MainActivity));
-            StartActivity(intent);
+            Intent data = new Intent();
+            SetResult(Result.Canceled, data);
+            Finish();
         }
 
         public void DeleteSelectedCoupon(object sender, EventArgs e)

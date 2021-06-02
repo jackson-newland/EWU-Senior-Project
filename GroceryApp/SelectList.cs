@@ -19,6 +19,7 @@ namespace GroceryApp
         Button addButton, deleteButton, setButton;
         TextView currentList;
         List<string> Items;
+        List<GroceryLists> GroceryList;
         ListView listSelectList;
         GroceryAppDB _db;
         int requestCodeSetList = 7;
@@ -29,6 +30,7 @@ namespace GroceryApp
             SetContentView(Resource.Layout.SelectListScreen);
             _db = new GroceryAppDB();
             Items = new List<string>();
+            GroceryList = new List<GroceryLists>();
 
             backButton = FindViewById<ImageButton>(Resource.Id.slBackButton);
             backButton.Click += OpenMain;
@@ -52,7 +54,7 @@ namespace GroceryApp
 
         private void ListSelectList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            currentList.Text = Items[e.Position];
+            currentList.Text = GroceryList[e.Position].Name;
         }
 
         private void SetButton_Click(object sender, EventArgs e)
@@ -90,16 +92,19 @@ namespace GroceryApp
         {
             _db.DeleteList(currentList.Text.ToString());
             currentList.Text = "Select A List";
+            
             DisplayList();
         }
 
         public void DisplayList()
         {
-                    
+            Items.Clear();
+            GroceryList.Clear();
             IEnumerable<GroceryLists> list = _db.GetList();
             foreach (GroceryLists t in list)
             {
-                Items.Add(t.Name);
+                Items.Add(t.ToString());
+                GroceryList.Add(t);
 
             }
 
