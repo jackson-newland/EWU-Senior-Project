@@ -33,7 +33,6 @@ namespace GroceryApp
             SetContentView(Resource.Layout.activity_main);
 
             _db = new GroceryAppDB(); // Creates the connection to the database
-            currentList = "";
             
 
             // Used for testing lists and groceries
