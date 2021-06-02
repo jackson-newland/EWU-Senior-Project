@@ -29,7 +29,7 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
             _db = new GroceryAppDB();
-            currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
+           // currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
             DisplayList();                                                                               //Calls ListView displaying method.
 
             selectedItems = new List<string>();
@@ -80,7 +80,7 @@ namespace GroceryApp
         {
             listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
             Items = new List<string>();
-            glist = _db.GetGroceries("List1");                                          //This method calls the current list and converts everything into a Ienumberable list.
+            glist = _db.GetGroceries(currentList);                                          //This method calls the current list and converts everything into a Ienumberable list.
             foreach (Grocery g in glist)                                                //Goes through the list and adds each grocery in format to the list.
             {
                 Items.Add(g.ToString());

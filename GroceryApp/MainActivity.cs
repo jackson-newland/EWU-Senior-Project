@@ -21,7 +21,9 @@ namespace GroceryApp
         ListView ListViewMain;
         TextView storeName, listName, budget;
         string currentList, currentStore;
-        int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
+        int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5, remaining;
+        GroceryLists current;
+        IEnumerable<Grocery> glist;
         GroceryAppDB _db;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -64,9 +66,8 @@ namespace GroceryApp
             addGroceryButton = FindViewById<Button>(Resource.Id.addButtonMain);
             addGroceryButton.Click += OpenAddGrocery;
 
+            GetBudget();
             DisplayList();
-
-            // FindViewById<Button>(Resource.Id.addButtonMain).Click += (o, e) => SetContentView(Resource.Layout.SetListScreen);
 
         }
 
@@ -121,13 +122,34 @@ namespace GroceryApp
             StartActivityForResult(intent, requestCodeAddGrocery);
         }
 
+        public void GetBudget()
+        {
+            budget = FindViewById<TextView>(Resource.Id.budgetMain);
+            IEnumerable<GroceryLists> lists = _db.GetList();
+            foreach (GroceryLists l in lists)                                  //Verifies the correct list is used by making sure the name of it matches the currentList string.
+            {
+                if (l.Name.Equals(currentList))
+                {
+                    current = l;
+                }
+            }
+            double remaining = current.Budget;
+                                                             
+            glist = _db.GetGroceries(currentList);                            //Foreach loop subtracting cost of each item from remaining integer.
+            foreach (Grocery g in glist)                                          
+            {
+                remaining -= g.Price;
+            }
+            budget.Text = "Budget: " + remaining.ToString();                 //Concats the budget textview with the Budget: text and the remaining amount.
+        }
+
         public void DisplayList()                                               
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
             Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
                                    
-                IEnumerable<Grocery> glist = _db.GetGroceries(currentList);         // This method calls the current list and converts everything into a Ienumberable list
+                glist = _db.GetGroceries(currentList);                                // This method calls the current list and adds everything into the Ienumberable list
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
                 {
                     Items.Add(g.ToString());
@@ -171,9 +193,6 @@ namespace GroceryApp
 
             }
         }
-        public void getBudget()
-        {
-
-        }
+  
     }
 }
