@@ -160,6 +160,7 @@ namespace GroceryApp
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
+            GetBudget();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) // returns the data from the screens
