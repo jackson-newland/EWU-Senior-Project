@@ -132,6 +132,10 @@ namespace GroceryApp
                 {
                     current = l;
                 }
+                else
+                {
+                    return;
+                }
             }
             double remaining = current.Budget;
                                                              
@@ -147,7 +151,7 @@ namespace GroceryApp
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
 
-            Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
+            Items = new List<string>();                                               //The code that populated the string list will change to concat strings using data from the database. Then it will be added
                                    
                 glist = _db.GetGroceries(currentList);                                // This method calls the current list and adds everything into the Ienumberable list
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
