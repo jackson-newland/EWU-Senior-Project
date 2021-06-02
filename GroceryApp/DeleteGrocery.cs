@@ -29,7 +29,7 @@ namespace GroceryApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
             _db = new GroceryAppDB();
-           // currentList = "List1";                                                                       //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
+            currentList = "";                                                                            //The currentList string is the variable that will change when the user changes list. This string will be updated by that.
             DisplayList();                                                                               //Calls ListView displaying method.
 
             selectedItems = new List<string>();
