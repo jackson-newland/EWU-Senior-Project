@@ -62,7 +62,8 @@ namespace GroceryApp
             if(currentList.Text.ToString() == "Select A List")
             {
                 OpenMain(sender, e);
-            } else
+            } 
+            else
             {
                 Intent data = new Intent();
                 data.SetData(Android.Net.Uri.Parse(currentList.Text.ToString()));
@@ -73,8 +74,7 @@ namespace GroceryApp
         }
 
         public void OpenMain(object sender, EventArgs e)
-        {
-          
+        {         
             Intent data = new Intent();
             data.SetData(Android.Net.Uri.Parse(currentList.Text.ToString()));
           
@@ -84,15 +84,13 @@ namespace GroceryApp
 
         public void AddList(object sender, EventArgs e)
         {
-            StartActivityForResult(typeof(SetList), requestCodeSetList);
-         
+            StartActivityForResult(typeof(SetList), requestCodeSetList);       
         }
 
         public void DeleteList(object sender, EventArgs e)
         {
             _db.DeleteList(currentList.Text.ToString());
-            currentList.Text = "Select A List";
-            
+            currentList.Text = "Select A List";      
             DisplayList();
         }
 
@@ -105,7 +103,6 @@ namespace GroceryApp
             {
                 Items.Add(t.ToString());
                 GroceryList.Add(t);
-
             }
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);

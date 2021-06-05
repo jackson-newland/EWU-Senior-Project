@@ -55,19 +55,17 @@ namespace GroceryApp
             remBudget = FindViewById<TextView>(Resource.Id.remBudgetMainValue);
 
             DisplayList();
-
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         public void OpenSelectList(object sender, EventArgs e)
         {
-              StartActivityForResult(typeof(SelectList), requestCodeList);
+            StartActivityForResult(typeof(SelectList), requestCodeList);
         }
 
         public void OpenSetStore(object sender, EventArgs e)
@@ -88,7 +86,6 @@ namespace GroceryApp
             Intent intent = new Intent(this, typeof(DeleteGrocery));
             intent.PutExtra("currentList", currentList);
             StartActivityForResult(intent, requestCodeDeleteGrocery);
-
         }
 
         public void OpenAddGrocery(object sender, EventArgs e)
@@ -104,19 +101,14 @@ namespace GroceryApp
             if(currentList != null)
             {
                 double listBudget = _db.GetBudget(currentList);
-
                 foreach (Grocery g in _db.GetGroceries(currentList))
                 {
                     listBudget -= g.Price;
                 }
-
                 remBudget.Text = "$" + listBudget.ToString();
                 budget.Text = "$" + _db.GetBudget(currentList).ToString();
-
             }
-       
         }
-
 
         public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
         {
@@ -128,10 +120,7 @@ namespace GroceryApp
                 foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
                 {
                     Items.Add(g.ToString());
-
-                }
-             
-           
+                }     
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
@@ -140,7 +129,6 @@ namespace GroceryApp
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) // returns the data from the screens
         {
-
             switch (requestCode)
             {
                 case 1:
@@ -172,6 +160,7 @@ namespace GroceryApp
                 case 3:
                     DisplayList();
                     break;
+
                 case 4:
                     DisplayList();
                     break;
@@ -179,11 +168,7 @@ namespace GroceryApp
                 case 5:
                     DisplayList();
                     break;
-
-
-
             }
-
           
         }
     }

@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -23,6 +23,7 @@ namespace GroceryApp
         GroceryAppDB _db;
         GroceryData _GDDB;
         string currentList;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,10 +37,10 @@ namespace GroceryApp
 
             ListViewViewCoupon = FindViewById<ListView>(Resource.Id.listViewCoupons);
 
-            // var store = savedInstanceState.GetBundle("currentStore");
+            //var store = savedInstanceState.GetBundle("currentStore");
             currentStoreName.Text = Intent.GetStringExtra("currentStore");
             currentList = Intent.GetStringExtra("currentList");
-            //  currentStoreAddress = FindViewById<TextView>(Resource.Id.storeAddressViewCoupon);
+            //currentStoreAddress = FindViewById<TextView>(Resource.Id.storeAddressViewCoupon);
 
             backButton = FindViewById<ImageButton>(Resource.Id.viewCouponBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on view coupon screen.
             backButton.Click += OpenMain;
@@ -80,7 +81,7 @@ namespace GroceryApp
             Finish();
         }
 
-        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        public void DisplayList()                                               
         {
             Items.Clear();
             IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, "Club Card");
@@ -89,9 +90,6 @@ namespace GroceryApp
                 string couponInfo = g.Name + "\nCoupon: " + g.Coupon + "\nRegular Price: $" + g.Price.ToString().PadRight(15, ' ') + "Sale Price: $" + _GDDB.GetCurrentPrice(g.Name);
                 Items.Add(couponInfo);
             }
-
-
-
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewViewCoupon.Adapter = adapter;
         }

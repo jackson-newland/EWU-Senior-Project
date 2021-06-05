@@ -36,15 +36,14 @@ namespace GroceryApp
             currentStore = Intent.GetStringExtra("currentStore");
 
             Items = new List<string>();
-            Cate = new List<CategoryItem>();
-       
+            Cate = new List<CategoryItem>(); 
 
             ListViewAddGro = FindViewById<ListView>(Resource.Id.listViewAddGrocery);
             ListViewAddGro.ItemClick += ListViewAddGro_ItemClick;
 
             searchBar = FindViewById<SearchView>(Resource.Id.searchViewAddGrocery);
             searchBar.QueryTextSubmit += SearchBar_QueryTextSubmit;
-          //  searchBar.QueryTextChange += SearchBar_QueryTextChange;
+            //searchBar.QueryTextChange += SearchBar_QueryTextChange;
 
             addButton = FindViewById<Button>(Resource.Id.addButtonAddGrocery);
             addButton.Click += AddButton_Click;
@@ -52,15 +51,12 @@ namespace GroceryApp
                                                                                             //Calls ListView displaying method.
             backButton = FindViewById<ImageButton>(Resource.Id.addGroceryBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on add grocery screen.
             backButton.Click += OpenMain;    
-            
 
-
-            //  DisplayList();
+            //DisplayList();
         }
 
         private void ListViewAddGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-          
+        {         
             selectedGrocery = new CategoryItem
             {
                 itemName = Cate[e.Position].itemName,
@@ -70,7 +66,6 @@ namespace GroceryApp
                 category = Cate[e.Position].category,
                 store = Cate[e.Position].store
             };
-
         }
 
         //private void SearchBar_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)

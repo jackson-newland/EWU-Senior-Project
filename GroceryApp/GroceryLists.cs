@@ -29,8 +29,6 @@ namespace GroceryApp
         {
             return Name.PadRight(55, ' ') + "$" + Budget;
         }
-    }
-
-   
+    } 
 
 }

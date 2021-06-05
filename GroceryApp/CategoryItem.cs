@@ -25,8 +25,6 @@ namespace GroceryApp
         public string category { get; set; }
         public string store { get; set; }
 
-
-
         public CategoryItem()
         {
         }

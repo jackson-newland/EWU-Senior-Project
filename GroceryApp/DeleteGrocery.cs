@@ -23,16 +23,15 @@ namespace GroceryApp
         IEnumerable<Grocery> glist;
         string currentList;
         int selectCounter = 0;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
-            _db = new GroceryAppDB();
-             
-
+            _db = new GroceryAppDB();        
             currentList = Intent.GetStringExtra("currentList");
-
             selectedItems = new List<string>();
+
             backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
             backButton.Click += OpenMain;
 
@@ -86,7 +85,6 @@ namespace GroceryApp
             {
                 Items.Add(g.ToString());
             }
-
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             listViewDelGro.Adapter = adapter;
             listViewDelGro.ItemClick += ListViewDelGro_ItemClick;
@@ -95,7 +93,7 @@ namespace GroceryApp
         private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             string selectedGroc = Items[e.Position];
-            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //THE COUNTER CODE IS BEING TESTED RIGHT NOW
+            numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //Textview for items selected count is increased or decreased inside click event.
 
             if (selectedItems.Contains(selectedGroc))
             {

@@ -39,9 +39,7 @@ namespace GroceryApp
             SelectedCoupons = new List<string>();
             GroceryItem = new List<Grocery>();
 
-
-            currentList = Intent.GetStringExtra("currentList");
-          
+            currentList = Intent.GetStringExtra("currentList");          
 
             backButton = FindViewById<ImageButton>(Resource.Id.dcBackButton);
             backButton.Click += OpenMain;
@@ -94,7 +92,6 @@ namespace GroceryApp
             SelectedCoupons.Clear();
             selectCounter.Text = "0";
             DisplayList();
-
         }
 
         public void DeleteAllCoupons(object sender, EventArgs e)
@@ -107,8 +104,7 @@ namespace GroceryApp
         }
 
         public void DisplayList()
-        {
-                                                
+        {                                          
             Items.Clear();
             GroceryItem.Clear();
             IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, "Club Card");
@@ -118,7 +114,6 @@ namespace GroceryApp
                 Items.Add(couponInfo);
                 GroceryItem.Add(g);
             }
-
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, Items);
             ListViewDelCoup.Adapter = adapter;
         }

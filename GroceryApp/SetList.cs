@@ -46,12 +46,8 @@ namespace GroceryApp
 
             budget = FindViewById<EditText>(Resource.Id.setlBudgetBox);
 
-
             set = FindViewById<Button>(Resource.Id.setlSetButton);
             set.Click += Set_Click;
-
-          
-
         }
 
         private void Set_Click(object sender, EventArgs e)
@@ -62,18 +58,17 @@ namespace GroceryApp
                 {
                     try // trys to create a list and checks if all entry boxes are filled and valid
                     {
-
                         string listName = startDateText.Text.ToString() + " - " + endDateText.Text.ToString();
                         if (!_db.DoesListExist(listName)) // checks if the list already exists in the database, if not creates a new list and returns the user to Select List Screen
                         {
                             _db.AddGroceryList(listName, Double.Parse(budget.Text.ToString()));
                             Intent data = new Intent();
-                           // data.PutExtra("newList", listName);
+                            //data.PutExtra("newList", listName);
                             data.SetData(Android.Net.Uri.Parse(listName));
-                            //   Intent intent = new Intent(this, typeof(SelectList));
+                            //Intent intent = new Intent(this, typeof(SelectList));
                             SetResult(Result.Ok, data);
                             Finish();
-                           // StartActivity(intent);
+                            //StartActivity(intent);
                         }
                         else
                         {
@@ -100,7 +95,6 @@ namespace GroceryApp
         private void Calendar_DateChanged(object sender, DatePicker.DateChangedEventArgs e) // sets start date or end date depending on which button is clicked and then disable the calendar
         {
             calendar.Visibility = (ViewStates)4; // sets calendar visibility to invisible
-
             if (startFocus)
             {
                 sYear = e.Year;
@@ -123,14 +117,13 @@ namespace GroceryApp
             Intent data = new Intent();
             SetResult(Result.Canceled, data);
             Finish();
-         //   StartActivity(intent);
+            //StartActivity(intent);
         }
 
         public void StartDateClick(object send, EventArgs e) // enables calendar after start date button is clicked
         {
             calendar.Visibility = 0; // sets calendar visibility to true
             startFocus = true;
-
         }
 
         private void EndDate_Click(object sender, EventArgs e) // enables calendar after end date button is clicked
@@ -138,7 +131,6 @@ namespace GroceryApp
             calendar.Visibility = 0; // sets calendar visibility to true
             startFocus = false;
         }
-
 
         public int ValidDate() // checks if the start date and end date are a valid timeline
         {
@@ -162,7 +154,6 @@ namespace GroceryApp
 
             });
             alert.Show();
-
         }
 
         public void ListAlreadyExists() // alert for a list that already exists
