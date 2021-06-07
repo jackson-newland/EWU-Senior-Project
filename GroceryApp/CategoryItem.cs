@@ -15,7 +15,7 @@ namespace GroceryApp
 {
 
     [Table("storeItems")]
-    class CategoryItem
+    class CategoryItem // since the webscraper isn't operational, this is the item that would of been pulled from the store
     {
         [PrimaryKey]
         public string itemName { get; set; }
@@ -31,7 +31,7 @@ namespace GroceryApp
 
         public override string ToString()
         {
-            return itemName.PadRight(10, ' ') + "\n$" + regPrice;
+            return itemName.PadRight(10, ' ') + "\n$" + String.Format("{0:0.00}", regPrice);
         }
 
     }

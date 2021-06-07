@@ -14,15 +14,15 @@ namespace GroceryApp
     [Activity(Label = "ViewCoupon")]
     public class ViewCoupon : Activity
     {
-        ImageButton backButton;
-        Button applyButton, deleteButton;
-        List<string> Items;
-        ListView ListViewViewCoupon;
-        int requestCodeDeleteCoupon = 8;
-        TextView currentStoreName, currentStoreAddress;
-        GroceryAppDB _db;
-        GroceryData _GDDB;
-        string currentList;
+        private ImageButton backButton;
+        private Button applyButton, deleteButton;
+        private List<string> Items;
+        private ListView ListViewViewCoupon;
+        private int requestCodeDeleteCoupon = 8;
+        private TextView currentStoreName;
+        private GroceryAppDB _db;
+        private GroceryData _GDDB;
+        private string currentList;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,10 +37,8 @@ namespace GroceryApp
 
             ListViewViewCoupon = FindViewById<ListView>(Resource.Id.listViewCoupons);
 
-            //var store = savedInstanceState.GetBundle("currentStore");
             currentStoreName.Text = Intent.GetStringExtra("currentStore");
             currentList = Intent.GetStringExtra("currentList");
-            //currentStoreAddress = FindViewById<TextView>(Resource.Id.storeAddressViewCoupon);
 
             backButton = FindViewById<ImageButton>(Resource.Id.viewCouponBackButton);                       //Setting view to activity_main.xml when back arrow button clicked on view coupon screen.
             backButton.Click += OpenMain;
@@ -54,38 +52,38 @@ namespace GroceryApp
             DisplayList();
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e) // opens the delete coupon screen
         {
             Intent intent = new Intent(this, typeof(DeleteCoupon));
             intent.PutExtra("currentList", currentList);
+            intent.PutExtra("currentStore", currentStoreName.Text);
             StartActivityForResult(intent, requestCodeDeleteCoupon);
         }
 
-        private void ApplyButton_Click(object sender, EventArgs e)
+        private void ApplyButton_Click(object sender, EventArgs e) // applys the coupons to the grocery items
         {
-            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, "Club Card");
+            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, currentStoreName.Text.ToString());
             List<string> coupons = new List<string>();
-            foreach(Grocery g in gList)
+            foreach (Grocery g in gList)
             {
-               // string price = _GDDB.GetCurrentPrice(g.Name);
                 _db.UpdatePrice(currentList, g.Name, _GDDB.GetCurrentPrice(g.Name));
                 coupons.Add(g.Name);
             }
             AppliedCouponAlert(coupons);
         }
 
-        public void OpenMain(object sender, EventArgs e)
+        private void OpenMain(object sender, EventArgs e) // returns to the main screen
         {
             Intent data = new Intent();
             SetResult(Result.Canceled, data);
             Finish();
         }
 
-        public void DisplayList()                                               
+        private void DisplayList() // displays the coupons                                               
         {
             Items.Clear();
-            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, "Club Card");
-            foreach(Grocery g in gList)
+            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, currentStoreName.Text.ToString());
+            foreach (Grocery g in gList)
             {
                 string couponInfo = g.Name + "\nCoupon: " + g.Coupon + "\nRegular Price: $" + g.Price.ToString().PadRight(15, ' ') + "Sale Price: $" + _GDDB.GetCurrentPrice(g.Name);
                 Items.Add(couponInfo);
@@ -94,7 +92,7 @@ namespace GroceryApp
             ListViewViewCoupon.Adapter = adapter;
         }
 
-        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) // data from delete coupon
         {
             if (requestCode == requestCodeDeleteCoupon)
             {
@@ -109,13 +107,13 @@ namespace GroceryApp
             }
         }
 
-        public void AppliedCouponAlert(List<string> couponList) // alert for a list that already exists
+        private void AppliedCouponAlert(List<string> couponList) // alert for a list that already exists
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             AlertDialog alert = dialog.Create();
             alert.SetTitle("Coupons Applied!");
             string coupons = "";
-            foreach(string s in couponList)
+            foreach (string s in couponList)
             {
                 coupons += s + "\n";
             }

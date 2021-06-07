@@ -16,15 +16,15 @@ namespace GroceryApp
     [Activity(Label = "Grocery App", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Button setListButton, setStoreButton, deleteCouponsButton, selectListButton, deleteGroceryButton, addGroceryButton;
-        List<string> Items;
-        ListView ListViewMain;
-        TextView storeName, listName, budget, remBudget;
-        string currentList, currentStore;
-        int requestCodeList = 1, requestCodeStore = 2, requestCodeDeleteCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
-        GroceryAppDB _db;
-   
-        protected override void OnCreate(Bundle savedInstanceState)
+        private Button setListButton, setStoreButton, viewCouponsButton, deleteGroceryButton, addGroceryButton;
+        private List<string> Items;
+        private ListView ListViewMain;
+        private TextView storeName, listName, budget, remBudget;
+        private string currentList, currentStore;
+        private int requestCodeList = 1, requestCodeStore = 2, requestCodeViewCoupon = 3, requestCodeDeleteGrocery = 4, requestCodeAddGrocery = 5;
+        private GroceryAppDB _db;
+
+        protected override void OnCreate(Bundle savedInstanceState) // creates the main screen
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -39,8 +39,8 @@ namespace GroceryApp
             setStoreButton = FindViewById<Button>(Resource.Id.setStoreButtonMain);
             setStoreButton.Click += OpenSetStore;
 
-            deleteCouponsButton = FindViewById<Button>(Resource.Id.couponsButtonMain);
-            deleteCouponsButton.Click += OpenViewCoupon;
+            viewCouponsButton = FindViewById<Button>(Resource.Id.couponsButtonMain);
+            viewCouponsButton.Click += OpenViewCoupon;
 
             deleteGroceryButton = FindViewById<Button>(Resource.Id.deleteButtonMain);
             deleteGroceryButton.Click += OpenDeleteGrocery;
@@ -63,32 +63,37 @@ namespace GroceryApp
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public void OpenSelectList(object sender, EventArgs e)
+        private void OpenSelectList(object sender, EventArgs e) // opens SelectList screen
         {
-            StartActivityForResult(typeof(SelectList), requestCodeList);
+            Intent intent = new Intent(this, typeof(SelectList));
+            intent.PutExtra("mainList", currentList);
+            intent.PutExtra("mainStore", currentStore);
+            StartActivityForResult(intent, requestCodeList);
         }
 
-        public void OpenSetStore(object sender, EventArgs e)
+        private void OpenSetStore(object sender, EventArgs e) // opens SetStore screen
         {
-            StartActivityForResult(typeof(SetStore), requestCodeStore);
+            Intent intent = new Intent(this, typeof(SetStore));
+            intent.PutExtra("mainStore", currentStore);
+            StartActivityForResult(intent, requestCodeStore);
         }
 
-        public void OpenViewCoupon(object sender, EventArgs e)
+        private void OpenViewCoupon(object sender, EventArgs e) // opens ViewCoupon screen
         {
             Intent intent = new Intent(this, typeof(ViewCoupon));
             intent.PutExtra("currentStore", currentStore);
             intent.PutExtra("currentList", currentList);
-            StartActivityForResult(intent, requestCodeDeleteCoupon);
+            StartActivityForResult(intent, requestCodeViewCoupon);
         }
 
-        public void OpenDeleteGrocery(object sender, EventArgs e)
+        private void OpenDeleteGrocery(object sender, EventArgs e) // opens DeleteGrocery screen
         {
             Intent intent = new Intent(this, typeof(DeleteGrocery));
             intent.PutExtra("currentList", currentList);
             StartActivityForResult(intent, requestCodeDeleteGrocery);
         }
 
-        public void OpenAddGrocery(object sender, EventArgs e)
+        private void OpenAddGrocery(object sender, EventArgs e) // open AddGrocery screen
         {
             Intent intent = new Intent(this, typeof(AddGrocery));
             intent.PutExtra("currentStore", currentStore);
@@ -96,34 +101,65 @@ namespace GroceryApp
             StartActivityForResult(intent, requestCodeAddGrocery);
         }
 
-        public void CurrentBudget()
+        private void CurrentBudget() // gets the current grocery list's budget and calculates the budget of the sum of all grocery prices
         {
-            if(currentList != null)
+            double listBudget = _db.GetBudget(currentList);
+            foreach (Grocery g in _db.GetGroceries(currentList))
             {
-                double listBudget = _db.GetBudget(currentList);
-                foreach (Grocery g in _db.GetGroceries(currentList))
-                {
-                    listBudget -= g.Price;
-                }
-                remBudget.Text = "$" + listBudget.ToString();
-                budget.Text = "$" + _db.GetBudget(currentList).ToString();
+                listBudget -= g.Price;
             }
+            remBudget.Text = "$" + listBudget.ToString();
+            budget.Text = "$" + _db.GetBudget(currentList).ToString();
+
         }
 
-        public void DisplayList()                                               //Placeholder string content (duh). We will use this method to add the strings we make from the database to our ListView.
+        private bool ValidStore() // checks to see if the current store is valid and changes the visibility of buttons 
+        {
+            if (currentStore != "Select A Store" && currentStore != null)
+            {
+                setListButton.Visibility = 0;
+                return true;
+            }
+            setListButton.Visibility = (ViewStates)4;
+            viewCouponsButton.Visibility = (ViewStates)4;
+            addGroceryButton.Visibility = (ViewStates)4;
+            deleteGroceryButton.Visibility = (ViewStates)4;
+            return false;
+        }
+
+        private bool ValidList() // checks to see if the current grocery list is valid and changes the visibility of buttons 
+        {
+            if (currentList != "Select A Date Range" && currentList != null)
+            {
+                viewCouponsButton.Visibility = 0;
+                addGroceryButton.Visibility = 0;
+                deleteGroceryButton.Visibility = 0;
+                return true;
+            }
+            viewCouponsButton.Visibility = (ViewStates)4;
+            addGroceryButton.Visibility = (ViewStates)4;
+            deleteGroceryButton.Visibility = (ViewStates)4;
+            return false;
+
+        }
+
+        private void DisplayList() // displays all grocery items from the selected grocery list                                              
         {
             ListViewMain = FindViewById<ListView>(Resource.Id.listViewMain);
+            ValidStore();
+            ValidList();
 
-            Items = new List<string>();                                         //The code that populated the string list will change to concat strings using data from the database. Then it will be added
-                                   
-                IEnumerable<Grocery> glist = _db.GetGroceries(currentList);           // This method calls the current list and converts everything into a Ienumberable list
-                foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
-                {
-                    Items.Add(g.ToString());
-                }     
+            Items = new List<string>();
+
+            IEnumerable<Grocery> glist = _db.GetGroceries(currentList);           // This method calls the current list and converts everything into a Ienumberable list
+            foreach (Grocery g in glist)                                          // Goes through the list and adds each grocery name to the list
+            {
+                Items.Add(g.ToString());
+            }
 
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemActivated1, Items);
             ListViewMain.Adapter = adapter;
+
             CurrentBudget();
         }
 
@@ -131,30 +167,58 @@ namespace GroceryApp
         {
             switch (requestCode)
             {
-                case 1:
+                case 1: // set list screen data
                     if (resultCode == Result.Ok)
                     {
                         listName.Text = data.Data.ToString();
                         currentList = data.Data.ToString();
-                        DisplayList();
+                    }
+                    else if (resultCode == Result.FirstUser)
+                    {
+                        listName.Text = data.Data.ToString();
+                        currentList = null;
                     }
                     else if (resultCode == Result.Canceled)
                     {
-                        DisplayList();
+                        listName.Text = data.Data.ToString();
+                        if (data.Data.ToString() == "Select A Date Range")
+                        {
+                            currentList = null;
+                        }
                     }
+                    DisplayList();
                     break;
 
-                case 2:
+                case 2: // set store screen data
+
                     if (resultCode == Result.Ok)
                     {
                         storeName.Text = data.Data.ToString();
+                        if (data.Data.ToString() == "Select A Store")
+                        {
+                            currentList = null;
+                            storeName.Text = "Select A Store";
+                        }
                         currentStore = data.Data.ToString();
-                        DisplayList();
+                    }
+                    else if (resultCode == Result.FirstUser)
+                    {
+                        storeName.Text = data.Data.ToString();
+                        currentStore = null;
+                        currentList = null;
+                        listName.Text = "Select A Date Range";
                     }
                     else if (resultCode == Result.Canceled)
                     {
-                        DisplayList();
+                        storeName.Text = data.Data.ToString();
+                        if (data.Data.ToString() == "Select A Store")
+                        {
+                            currentStore = null;
+                            currentList = null;
+                            listName.Text = "Select A Date Range";
+                        }
                     }
+                    DisplayList();
                     break;
 
                 case 3:
@@ -169,7 +233,7 @@ namespace GroceryApp
                     DisplayList();
                     break;
             }
-          
+
         }
     }
 }

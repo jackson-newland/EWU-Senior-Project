@@ -15,15 +15,15 @@ namespace GroceryApp
     [Activity(Label = "SetList")]
     public class SetList : Activity
     {
-        ImageButton backButton;
-        Button startDate, endDate, set;
-        TextView startDateText, endDateText;
-        EditText budget;
-        bool startFocus;
-        DatePicker calendar;
-        GroceryAppDB _db = new GroceryAppDB();
+        private ImageButton backButton;
+        private Button startDate, endDate, set;
+        private TextView startDateText, endDateText;
+        private EditText budget;
+        private bool startFocus;
+        private DatePicker calendar;
+        private GroceryAppDB _db = new GroceryAppDB();
         private int sYear, eYear, sMonth, eMonth, sDay, eDay;
-                
+
         protected override void OnCreate(Bundle savedInstanceState) // creates the set list screen
         {
             base.OnCreate(savedInstanceState);
@@ -63,12 +63,9 @@ namespace GroceryApp
                         {
                             _db.AddGroceryList(listName, Double.Parse(budget.Text.ToString()));
                             Intent data = new Intent();
-                            //data.PutExtra("newList", listName);
                             data.SetData(Android.Net.Uri.Parse(listName));
-                            //Intent intent = new Intent(this, typeof(SelectList));
                             SetResult(Result.Ok, data);
                             Finish();
-                            //StartActivity(intent);
                         }
                         else
                         {
@@ -111,16 +108,14 @@ namespace GroceryApp
             }
         }
 
-        public void OpenSelectList(object sender, EventArgs e) // opens select list screen
+        private void OpenSelectList(object sender, EventArgs e) // opens select list screen
         {
-            //Intent intent = new Intent(this, typeof(SelectList));
             Intent data = new Intent();
             SetResult(Result.Canceled, data);
             Finish();
-            //StartActivity(intent);
         }
 
-        public void StartDateClick(object send, EventArgs e) // enables calendar after start date button is clicked
+        private void StartDateClick(object send, EventArgs e) // enables calendar after start date button is clicked
         {
             calendar.Visibility = 0; // sets calendar visibility to true
             startFocus = true;
@@ -132,7 +127,7 @@ namespace GroceryApp
             startFocus = false;
         }
 
-        public int ValidDate() // checks if the start date and end date are a valid timeline
+        private int ValidDate() // checks if the start date and end date are a valid timeline
         {
             DateTime start = new DateTime(sYear, sMonth, sDay);
             DateTime end = new DateTime(eYear, eMonth, eDay);
@@ -140,7 +135,7 @@ namespace GroceryApp
             return start.CompareTo(end);
         }
 
-        public void InvalidList() // alert for invalid list inputs
+        private void InvalidList() // alert for invalid list inputs
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             AlertDialog alert = dialog.Create();
@@ -156,7 +151,7 @@ namespace GroceryApp
             alert.Show();
         }
 
-        public void ListAlreadyExists() // alert for a list that already exists
+        private void ListAlreadyExists() // alert for a list that already exists
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             AlertDialog alert = dialog.Create();

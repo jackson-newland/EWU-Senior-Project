@@ -15,22 +15,24 @@ namespace GroceryApp
     public class SelectList : Activity
     {
 
-        ImageButton backButton;
-        Button addButton, deleteButton, setButton;
-        TextView currentList;
-        List<string> Items;
-        List<GroceryLists> GroceryList;
-        ListView listSelectList;
-        GroceryAppDB _db;
-        int requestCodeSetList = 7;
+        private ImageButton backButton;
+        private Button addButton, deleteButton, setButton;
+        private TextView currentList;
+        private List<string> Items;
+        private List<GroceryLists> GroceryList;
+        private ListView listSelectList;
+        private GroceryAppDB _db;
+        private int requestCodeSetList = 7;
+        private string mainList;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState) // creates the SelectList screen
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.SelectListScreen);
             _db = new GroceryAppDB();
             Items = new List<string>();
             GroceryList = new List<GroceryLists>();
+            mainList = Intent.GetStringExtra("mainList");
 
             backButton = FindViewById<ImageButton>(Resource.Id.slBackButton);
             backButton.Click += OpenMain;
@@ -49,52 +51,64 @@ namespace GroceryApp
 
             currentList = FindViewById<TextView>(Resource.Id.slCurrentListInfo);
 
+            if (mainList != null) // checks if the grocery list from the main screen is null
+            {
+                currentList.Text = mainList;
+            }
+
             DisplayList();
         }
 
-        private void ListSelectList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void ListSelectList_ItemClick(object sender, AdapterView.ItemClickEventArgs e) // on user input, selects the current grocery list
         {
             currentList.Text = GroceryList[e.Position].Name;
         }
 
-        private void SetButton_Click(object sender, EventArgs e)
+        private void SetButton_Click(object sender, EventArgs e) // sets the current grocery list
         {
-            if(currentList.Text.ToString() == "Select A List")
+            Intent data = new Intent();
+            if (currentList.Text == "Select A List")
             {
-                OpenMain(sender, e);
-            } 
+                data.SetData(Android.Net.Uri.Parse("Select A Date Range"));
+                SetResult(Result.FirstUser, data);
+            }
             else
             {
-                Intent data = new Intent();
                 data.SetData(Android.Net.Uri.Parse(currentList.Text.ToString()));
                 SetResult(Result.Ok, data);
-                Finish();
             }
-           
+            Finish();
         }
 
-        public void OpenMain(object sender, EventArgs e)
-        {         
+        private void OpenMain(object sender, EventArgs e) // returns to main screen
+        {
             Intent data = new Intent();
-            data.SetData(Android.Net.Uri.Parse(currentList.Text.ToString()));
-          
+            if (currentList.Text == "Select A List" || mainList == null)
+            {
+                data.SetData(Android.Net.Uri.Parse("Select A Date Range"));
+            }
+            else
+            {
+                data.SetData(Android.Net.Uri.Parse(mainList));
+            }
+
             SetResult(Result.Canceled, data);
             Finish();
         }
 
-        public void AddList(object sender, EventArgs e)
+        private void AddList(object sender, EventArgs e) // opens SetList screen
         {
-            StartActivityForResult(typeof(SetList), requestCodeSetList);       
+            StartActivityForResult(typeof(SetList), requestCodeSetList);
         }
 
-        public void DeleteList(object sender, EventArgs e)
+        private void DeleteList(object sender, EventArgs e) // deletes selected grocery list
         {
             _db.DeleteList(currentList.Text.ToString());
-            currentList.Text = "Select A List";      
+            currentList.Text = "Select A List";
             DisplayList();
         }
 
-        public void DisplayList()
+        private void DisplayList() // displays all grocery lists
         {
             Items.Clear();
             GroceryList.Clear();
@@ -109,16 +123,16 @@ namespace GroceryApp
             listSelectList.Adapter = adapter;
         }
 
-        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) // data from SetList screen
         {
-           if(requestCode == requestCodeSetList)
+            if (requestCode == requestCodeSetList)
             {
-                if(resultCode == Result.Ok)
+                if (resultCode == Result.Ok)
                 {
                     currentList.Text = data.Data.ToString();
                     DisplayList();
-                } 
-                else if(resultCode == Result.Canceled)
+                }
+                else if (resultCode == Result.Canceled)
                 {
                     DisplayList();
                 }

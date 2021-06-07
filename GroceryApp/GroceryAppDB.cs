@@ -16,7 +16,7 @@ using System.IO;
 
 namespace GroceryApp
 {
-    class GroceryAppDB // The commented out code is for the built in sqlite cmds but they I couldn't get them to work for custom tables
+    class GroceryAppDB // main database for grocery lists and groceries
     {
         private SQLiteConnection _connection;
         private string dbPath;
@@ -110,7 +110,7 @@ namespace GroceryApp
                     select s).ToList();
         }
 
-        public bool DoesListExist(string listName)
+        public bool DoesListExist(string listName) // checks to see if the current list exist in the database
         {
             if (_connection.Find<GroceryLists>(listName) != null)
             {
@@ -120,45 +120,61 @@ namespace GroceryApp
         }
 
         public void AddStore(string name, string address) // adds a store to the database
-        {      
-            var newStore = new Store
+        {
+            try
             {
-                Name = name,
-                Address = address
-            };
+                var newStore = new Store
+                {
+                    Name = name,
+                    Address = address
+                };
 
-            _connection.Insert(newStore);
+                _connection.Insert(newStore);
+            }
+            catch (SQLiteException e)
+            {
+
+            }
+
         }
 
-        public void DeleteStore(string address)
+        public void DeleteStore(string address) // deletes a store
         {
             _connection.Delete<Store>(address);
         }
 
-        public void DeleteAllStores()
+        public void DeleteAllStores() // deletes all stores
         {
             _connection.DeleteAll<Store>();
         }
 
-        public void UpdatePrice(string listName, string name, double price)
+        public void UpdatePrice(string listName, string name, double price) // updates the grocery item price
         {
             _connection.Query<Grocery>("UPDATE Groceries SET Price = '" + price + "' WHERE ListName = '" + listName + "' and Name = '" + name + "'");
         }
 
-        public IEnumerable<Grocery> GetCouponGroceries(string listName, string coupon)
+        public IEnumerable<Grocery> GetCouponGroceries(string listName, string store) // gets all coupon grocery items
         {
-            var couponList = _connection.Query<Grocery>("SELECT * FROM Groceries WHERE ListName = '" + listName + "' and Coupon = '" + coupon + "'");
+            var couponList = _connection.Query<Grocery>("SELECT * FROM Groceries WHERE ListName = '" + listName + "' and Store = '" + store + "' and Coupon = 'Club Card'");
             return (from c in couponList select c).ToList();
         }
 
-        public void DeleteCoupon(string listName, string name)
+        public void DeleteCoupon(string listName, string name) // deletes coupon
         {
             _connection.Query<Grocery>("UPDATE Groceries SET Coupon = ' ' WHERE ListName = '" + listName + "' and Name = '" + name + "'");
         }
 
-        public double GetBudget(string listName)
+        public double GetBudget(string listName) // calculates the grocery list budget
         {
-            return _connection.Get<GroceryLists>(listName).Budget;
+            try
+            {
+                return _connection.Get<GroceryLists>(listName).Budget;
+            }
+            catch (InvalidOperationException e)
+            {
+                return 0;
+            }
+
         }
 
         // Work in progress method that would of worked with sql.net extensions, but couldn't get the extension to work

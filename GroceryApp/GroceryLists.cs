@@ -13,7 +13,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace GroceryApp
 {
-      [Table("Grocery_Lists")] // Grocery list table
+    [Table("Grocery_Lists")] // Grocery list table
     class GroceryLists
     {
         [PrimaryKey]
@@ -27,8 +27,8 @@ namespace GroceryApp
 
         public override string ToString()
         {
-            return Name.PadRight(55, ' ') + "$" + Budget;
+            return Name.PadRight(55, ' ') + "$" + String.Format("{0:0.00}", Budget);
         }
-    } 
+    }
 
 }

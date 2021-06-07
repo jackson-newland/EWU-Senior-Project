@@ -15,7 +15,7 @@ namespace GroceryApp
 {
 
     [Table("Groceries")]
-    class Grocery
+    class Grocery // the grocery item
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -33,7 +33,7 @@ namespace GroceryApp
 
         public override string ToString()
         {
-            return Name.PadRight(10, ' ') + "\n$" + Price;
+            return Name.PadRight(10, ' ') + "\n" + Store + "\n$" + String.Format("{0:0.00}", Price);
         }
     }
 }

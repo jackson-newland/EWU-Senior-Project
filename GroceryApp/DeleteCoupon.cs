@@ -14,17 +14,17 @@ namespace GroceryApp
     [Activity(Label = "DeleteCoupon")]
     public class DeleteCoupon : Activity
     {
-        ImageButton backButton;
-        Button deleteButton, deleteAllButton;
-        List<string> Items, SelectedCoupons;
-        List<Grocery> GroceryItem;
-        ListView ListViewDelCoup;
-        TextView selectCounter;
-        GroceryAppDB _db;
-        GroceryData _GDDB;
-        string currentList, selectedItem;
-        int counter = 0;
-        protected override void OnCreate(Bundle savedInstanceState)
+        private ImageButton backButton;
+        private Button deleteButton, deleteAllButton;
+        private List<string> Items, SelectedCoupons;
+        private List<Grocery> GroceryItem;
+        private ListView ListViewDelCoup;
+        private TextView selectCounter;
+        private GroceryAppDB _db;
+        private GroceryData _GDDB;
+        private string currentList, currentStore, selectedItem;
+        private int counter = 0;
+        protected override void OnCreate(Bundle savedInstanceState) // creates the delete coupon screen
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteCouponScreen);
@@ -39,7 +39,8 @@ namespace GroceryApp
             SelectedCoupons = new List<string>();
             GroceryItem = new List<Grocery>();
 
-            currentList = Intent.GetStringExtra("currentList");          
+            currentList = Intent.GetStringExtra("currentList");
+            currentStore = Intent.GetStringExtra("currentStore");
 
             backButton = FindViewById<ImageButton>(Resource.Id.dcBackButton);
             backButton.Click += OpenMain;
@@ -55,7 +56,7 @@ namespace GroceryApp
             DisplayList();
         }
 
-        private void ListViewDelCoup_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void ListViewDelCoup_ItemClick(object sender, AdapterView.ItemClickEventArgs e) // user input selects the coupon
         {
             selectedItem = GroceryItem[e.Position].Name;
 
@@ -73,19 +74,19 @@ namespace GroceryApp
                 selectCounter.Text = counter.ToString();
                 e.View.SetBackgroundColor(Android.Graphics.Color.ParseColor("#B6CDFA"));
             }
-          
+
         }
 
-        public void OpenMain(object sender, EventArgs e)
+        private void OpenMain(object sender, EventArgs e) // returns to previous screen
         {
             Intent data = new Intent();
             SetResult(Result.Canceled, data);
             Finish();
         }
 
-        public void DeleteSelectedCoupon(object sender, EventArgs e)
+        private void DeleteSelectedCoupon(object sender, EventArgs e) // deletes selected coupon
         {
-            foreach(string s in SelectedCoupons)
+            foreach (string s in SelectedCoupons)
             {
                 _db.DeleteCoupon(currentList, s);
             }
@@ -94,20 +95,20 @@ namespace GroceryApp
             DisplayList();
         }
 
-        public void DeleteAllCoupons(object sender, EventArgs e)
+        private void DeleteAllCoupons(object sender, EventArgs e) // deletes all coupons
         {
-           foreach(Grocery g in GroceryItem)
+            foreach (Grocery g in GroceryItem)
             {
                 _db.DeleteCoupon(currentList, g.Name);
             }
             DisplayList();
         }
 
-        public void DisplayList()
-        {                                          
+        private void DisplayList() // displays coupons
+        {
             Items.Clear();
             GroceryItem.Clear();
-            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, "Club Card");
+            IEnumerable<Grocery> gList = _db.GetCouponGroceries(currentList, currentStore);
             foreach (Grocery g in gList)
             {
                 string couponInfo = g.Name + "\nCoupon: " + g.Coupon + "\nRegular Price: $" + g.Price.ToString().PadRight(15, ' ') + "Sale Price: $" + _GDDB.GetCurrentPrice(g.Name);

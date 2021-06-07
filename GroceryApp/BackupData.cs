@@ -17,7 +17,7 @@ using Android.Util;
 
 namespace GroceryApp
 {
-    class GroceryData
+    class GroceryData // this the back up database that replaces the webscraper
     {
         private SQLiteConnection _connection;
         private string dbPath;
@@ -28,7 +28,7 @@ namespace GroceryApp
             _connection.CreateTable<CategoryItem>();
         }
 
-        public List<GroceryApp.CategoryItem> selectTable()
+        public List<CategoryItem> selectTable() // selects all tables
         {
             var connection = new SQLiteConnection(dbPath);
             return connection.Table<CategoryItem>().ToList();
@@ -40,37 +40,43 @@ namespace GroceryApp
             return (from g in groceryList select g).ToList();
         }
 
-        public IEnumerable<CategoryItem> GetCategoryItems()
+        public IEnumerable<CategoryItem> GetCategoryItems() // gets all category items
         {
             var groceryList = _connection.Query<CategoryItem>("SELECT * FROM storeItems");
             return (from g in groceryList select g).ToList();
         }
 
-        public IEnumerable<CategoryItem> GetCoupons(string category)
+        public IEnumerable<CategoryItem> GetCoupons(string category) // gets the coupon items from the current store
         {
             var coupons = _connection.Query<CategoryItem>("SELECT * FROM storeItems WHERE coupon = 'Club Card' and category = '" + category + "'");
             return (from c in coupons select c).ToList();
         }
 
-        public void AddCategory(string itemName, double curPrice, double regPrice, string coupon, string category, string store)
+        public void AddCategory(string itemName, double curPrice, double regPrice, string coupon, string category, string store) // adds a category item to the database
         {
-            var newCategory = new CategoryItem
+            try
             {
-                itemName = itemName,
-                currentPrice = curPrice,
-                regPrice = regPrice,
-                coupon = coupon,
-                category = category,
-                store = store
-            };
-            _connection.Insert(newCategory);
-        } 
-       
-        public double GetCurrentPrice(string itemName)
+                var newCategory = new CategoryItem
+                {
+                    itemName = itemName,
+                    currentPrice = curPrice,
+                    regPrice = regPrice,
+                    coupon = coupon,
+                    category = category,
+                    store = store
+                };
+                _connection.Insert(newCategory);
+            }
+            catch (SQLiteException e)
+            {
+
+            }
+
+        }
+
+        public double GetCurrentPrice(string itemName) // gets the current price of the category item
         {
             return _connection.Get<CategoryItem>(itemName).currentPrice;
-            //var price =_connection.Query<CategoryItem>("SELECT currentPrice FROM storeItems WHERE itemName = '" + itemName + "'");
-            //return price.ToString();
         }
     }
 }

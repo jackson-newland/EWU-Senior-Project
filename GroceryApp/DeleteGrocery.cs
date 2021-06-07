@@ -14,25 +14,25 @@ namespace GroceryApp
     [Activity(Label = "DeleteGrocery")]
     public class DeleteGrocery : Activity
     {
-        ImageButton backButton;
-        Button deleteButton, deleteAllButton;
-        List<string> Items, selectedItems;
-        ListView listViewDelGro;
-        TextView numSelectedDelGro;
-        GroceryAppDB _db;
-        IEnumerable<Grocery> glist;
-        string currentList;
-        int selectCounter = 0;
+        private ImageButton backButton;
+        private Button deleteButton, deleteAllButton;
+        private List<string> Items, selectedItems;
+        private ListView listViewDelGro;
+        private TextView numSelectedDelGro;
+        private GroceryAppDB _db;
+        private IEnumerable<Grocery> glist;
+        private string currentList;
+        private int selectCounter = 0;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState) // creates the DeleteGrocery screen
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DeleteGroceryScreen);
-            _db = new GroceryAppDB();        
+            _db = new GroceryAppDB();
             currentList = Intent.GetStringExtra("currentList");
             selectedItems = new List<string>();
 
-            backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);                 //Setting view to activity_main.xml when back arrow button clicked on delete grocery screen.
+            backButton = FindViewById<ImageButton>(Resource.Id.deleteGroceryBackButton);
             backButton.Click += OpenMain;
 
             deleteButton = FindViewById<Button>(Resource.Id.deleteButtonDeleteGrocery);
@@ -44,19 +44,19 @@ namespace GroceryApp
             DisplayList();
         }
 
-        public void OpenMain(object sender, EventArgs e)
+        private void OpenMain(object sender, EventArgs e) // returns the main screen
         {
             Intent data = new Intent();
             SetResult(Result.Canceled, data);
             Finish();
         }
 
-        public void Delete(object sender, EventArgs e)                                  //Delete Grocery method. Takes list of strings created from the ItemClick method below that is
-        {                                                                               //populated with strings equal to the groceries (in ToString form) that are clicked/tapped by
-            if (selectedItems != null)                                                  //user. If the user taps the grocery again and the list already contains it, it is removed.
-            {                                                                           //This foreach loop activates upon the delete button being clicked and goes through all of the
-                foreach (Grocery g in glist)                                            //groceries in the list and sees if they appear in their ToString form in the aformention list
-                {                                                                       //that keeps track of which items have been selected in the ListView.
+        private void Delete(object sender, EventArgs e) // deletes selected grocery                                 
+        {
+            if (selectedItems != null)
+            {
+                foreach (Grocery g in glist)
+                {
                     if (selectedItems.Contains(g.ToString()))
                     {
                         _db.DeleteGrocery(g.ID);
@@ -70,13 +70,13 @@ namespace GroceryApp
             }
         }
 
-        public void DeleteAll(object sender, EventArgs e)
+        private void DeleteAll(object sender, EventArgs e) // deletes all grocery items
         {
-            _db.DeleteAllGrocery(currentList);                                          //Delete All Groceries. Changed it to use Jackson's helper method in the GroceryAppDB class.
+            _db.DeleteAllGrocery(currentList);
             DisplayList();
         }
 
-        public void DisplayList()
+        private void DisplayList() // displays the current grocery list's groceries.
         {
             listViewDelGro = FindViewById<ListView>(Resource.Id.listViewDeleteGrocery);
             Items = new List<string>();
@@ -90,7 +90,7 @@ namespace GroceryApp
             listViewDelGro.ItemClick += ListViewDelGro_ItemClick;
         }
 
-        private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void ListViewDelGro_ItemClick(object sender, AdapterView.ItemClickEventArgs e) // On user input, selects the current grocery item
         {
             string selectedGroc = Items[e.Position];
             numSelectedDelGro = FindViewById<TextView>(Resource.Id.itemsSelectedNumberDeleteGrocery);               //Textview for items selected count is increased or decreased inside click event.
